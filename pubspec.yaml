@@ -1,0 +1,31 @@
+name: country_picker
+description: A flutter package to select a country from a list of countries.
+
+version: 3.0.0
+
+homepage: https://github.com/ziqq
+repository: https://github.com/ziqq/flutter_country_picker
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  collection: ^1.17.0
+  cupertino_icons: ^1.0.2
+  grouped_list: ^5.1.2
+  modal_bottom_sheet: ^3.0.0-pre
+
+
+flutter:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lint_rules:
+    git:
+      url: https://github.com/ziqq/flutter_lint_rules.git
+      ref: main

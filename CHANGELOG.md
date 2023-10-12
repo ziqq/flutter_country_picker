@@ -1,21 +1,27 @@
 ## 3.0.0
-  * Fix ui & added dark mode
+  ### Feat
+  - Add dark mode.
 
-## 2.0.20
-  * Add support for Italian localization
-  * Fix French Translations
-  * UI filling fix
+## 2.20.0
+  ### Feat
+  - Add support for Italian localization.
+  ### Fix
+  - Fix French Translations.
+  - UI filling fix.
 
-## 2.0.19
-  * Add support for Dutch localization
-  * Add `parsePhoneCode` and `tryParsePhoneCode`
+## 2.19.0
+  ### Feat
+  - Add support for Dutch localization.
+  - Add `parsePhoneCode` and `tryParsePhoneCode`.
 
-## 2.0.18
-  * Fix Hindi Translations
-  * Removed old country codes for Kosovo (+381 & +386)
+## 2.18.0
+  ### Fix
+  - Fix Hindi Translations.
+  - Removed old country codes for Kosovo (+381 & +386).
 
-## 2.0.17
-  * Add option to hide search bar
+## 2.17.0
+  ### Feat
+  - Add option to hide search bar.
     ```Dart
       showCountryPicker(
         context: context,
@@ -23,7 +29,7 @@
         onSelect: (Country country) => print('Select country: ${country.displayName}'),
       );
     ```
-  * Add `searchTextStyle`
+  - Add `searchTextStyle`
     ```Dart
       showCountryPicker(
         context: context,
@@ -37,15 +43,18 @@
         onSelect: (Country country) => print('Select country: ${country.displayName}'),
       );
     ```
-  * Removed the need of `worldwide.png` and changed to '🌍' emoji
+  ### Fix
+  - Removed the need of `worldwide.png` and changed to '🌍' emoji.
 
-## 2.0.16
-  * Add support for Latvian localization
-  * Add support for Lithuanian localization
+## 2.16.0
+  ### Feat
+  - Add support for Latvian localization.
+  - Add support for Lithuanian localization.
 
-## 2.0.15
-  * Add support for German localization
-  * Add `favorite` option.
+## 2.15.0
+  ### Feat
+  - Add support for German localization.
+  - Add `favorite` option.
     - Can be used to to show the favorite countries at the top of the list.
     - It takes a list of country code(iso2).
       ```Dart
@@ -57,15 +66,18 @@
         },
       );
       ```
-  * Implemented Country Service
-  * Fix package assets
+  - Implemented Country Service.
+  ### Fixed
+  - Fix package assets.
 
-## 2.0.14
-  * Add support for country search by phone code
+## 2.14.0
+  ### Feat
+  - Add support for country search by phone code.
 
-## 2.0.13
-  * Add getter for flag emoji in `Country` model
-  * Add option for bottom sheet height.
+## 2.13.0
+  ### Feat
+  - Add getter for flag emoji in `Country` model.
+  - Add option for bottom sheet height.
     ```Dart
     showCountryPicker(
       context: context,
@@ -75,13 +87,14 @@
       onSelect: (Country country) => print('Select country: ${country.displayName}'),
     );
     ```
-## 2.0.12
-  * Update example android gradle
-  * Fix Kurdish translation for Curaçao name
-## 2.0.11
-  * Fix Eswatini name
-  * Fix Italy code at Turkish localization
-  * Add optional argument for showing "World Wide" option at the beginning of the list
+## 2.12.0
+  ### Fix
+  - Fix Kurdish translation for Curaçao name.
+  ### Update
+  - Example android gradle.
+## 2.11.0
+  ### Feat
+  - Add optional argument for showing "World Wide" option at the beginning of the list
     ```Dart
     showCountryPicker(
       context: context,
@@ -89,18 +102,24 @@
       onSelect: (Country country) => print('Select country: ${country.displayName}'),
     );
     ```
+  ### Fix
+  - Fix Eswatini name.
+  - Fix Italy code at Turkish localization.
 
-## 2.0.10
-  * Add support for French localization
-  * Add support for Kurdish localization
+## 2.10.0
+  ### Feat
+  - Add support for French localization.
+  - Add support for Kurdish localization.
 
-## 2.0.9
-  * Add support for Estonian localization
+## 2.9.0
+  ### Feat
+  - Add support for Estonian localization.
 
-## 2.0.8
-  * Add support for Arabic localization
-  * Add support for Croatian localization
-  * Add options to autofocus at search TextField.
+## 2.8.0
+  ### Feat
+  - Add support for Arabic localization.
+  - Add support for Croatian localization.
+  - Add options to autofocus at search TextField.
     ```Dart
     showCountryPicker(
       context: context,
@@ -109,14 +128,17 @@
     );
     ```
 
-## 2.0.7
-  * Add support for Turkish localization
+## 2.7.0
+  ### Feat
+  - Add support for Turkish localization.
 
-## 2.0.6
-  * Add support for Nepali and Hindi localization
+## 2.6.0
+  ### Feat
+  - Add support for Nepali and Hindi localization.
 
-## 2.0.5
-  * Add styling options for the border-radius and the search field.
+## 2.5.0
+  ### Feat
+  - Add styling options for the border-radius and the search field.
     ```Dart
     showCountryPicker(
       context: context,
@@ -142,18 +164,22 @@
     );
     ```
 
-## 2.0.4
-  * Add `CountryParser`
+## 2.4.0
+  ### Feat
+  - Add `CountryParser`.
 
-## 2.0.3
-  * Add Ukrainian, Russian, and Polish translations
-  * Add `onClosed` callback
+## 2.3.0
+  ### Feat
+  - Add Ukrainian, Russian, and Polish translations.
+  - Add `onClosed` callback.
 
-## 2.0.2
-  * Add support for Norwegian localization
+## 2.2.0
+  ### Feat
+  - Add support for Norwegian localization.
 
-## 2.0.1
-  * Implemented country list theme
+## 2.1.0
+  ### Feat
+  - Implemented country list theme
     ```Dart
     showCountryPicker(
       context: context,
@@ -166,19 +192,24 @@
     );
     ```
 ## 2.0.0
-  * Migrated to null safety
+  ### Update
+  - Migrated to null safety.
 
-## 1.1.4
-  * Add support for Spanish and Portuguese localization.
-  * If `showPhoneCode` is false remove duplicates country
+## 1.10.0
+  ### Feat
+  - Add support for Spanish and Portuguese localization.
+  ### Fix
+  - If `showPhoneCode` is false remove duplicates country.
 
-## 1.1.3
-  * Localize label and hint of search text field
+## 1.9.0
+  ### Feat
+  - Localize label and hint of search text field.
 
-## 1.1.2
-  * Add support for Greek localization.
-  * At search change contains to startsWith.
-  * Add country filter option.
+## 1.8.0
+  ### Feat
+  - Add support for Greek localization.
+  - At search change contains to startsWith.
+  - Add country filter option.
     - Can be used to uses filter the countries list (optional).
     - It takes a list of country code(iso2).
     - Can't provide both exclude and countryFilter
@@ -190,44 +221,48 @@
      );
     ```
 
-## 1.1.1
-  * Search on localizations.
+## 1.7.0
+  ### Feat
+  - Search on localizations.
 
-## 1.1.0
+## 1.6.0
+  ### Feat
+  - Implement localization. Add the `CountryLocalizations.delegate` in the list of your app delegates.
+  ```Dart
+  MaterialApp(
+        supportedLocales: [
+          const Locale('en'),
+          const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'), // Generic Simplified Chinese 'zh_Hans'
+          const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), // Generic traditional Chinese 'zh_Hant'
+        ],
+        localizationsDelegates: [
+          CountryLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        home: HomePage(),
+  );
+  ```
+  - Add supported languages:
+    * English
+    * Simplified Chinese
+    * Traditional Chinese
 
-### Implement localization.
-Add the `CountryLocalizations.delegate` in the list of your app delegates.
-```Dart
-MaterialApp(
-      supportedLocales: [
-        const Locale('en'),
-        const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'), // Generic Simplified Chinese 'zh_Hans'
-        const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), // Generic traditional Chinese 'zh_Hant'
-      ],
-      localizationsDelegates: [
-        CountryLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      home: HomePage(),
- );
-```
-### Supported languages:
-* English
-* Simplified Chinese
-* Traditional Chinese
+## 1.5.0
+  ### Update
+  - Documentation.
 
-## 1.0.5
-  * Update documentation.
+## 1.4.0
+  ### Feat
+  - Implement search.
 
-## 1.0.4
-  * Implement search.
+## 1.3.0
+  ### Feat
+  - Add show phone code option.
 
-## 1.0.3
-  * Add show phone code option.
-
-## 1.0.2
-  * Add exclude countries option.
+## 1.2.0
+  ### Feat
+  - Add exclude countries option.
     Can be used to exclude(remove) one ore more country from the countries list
     ```Dart
     showCountryPicker(
@@ -237,8 +272,10 @@ MaterialApp(
     );
     ```
 
-## 1.0.1
-  * Add documentation.
+## 1.1.0
+  ### Feat
+  - Add documentation.
 
 ## 1.0.0
-  * Initial developers preview release.
+  ### Feat
+  - Initial preview release.

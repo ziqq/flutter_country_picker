@@ -1,3 +1,7 @@
+## 3.1.0
+  ### Feat
+  - Add `CountryPhoneInput`
+
 ## 3.0.0
   ### Feat
   - Add dark mode.

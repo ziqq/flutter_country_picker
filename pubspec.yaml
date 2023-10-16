@@ -18,7 +18,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   grouped_list: ^5.1.2
   modal_bottom_sheet: ^3.0.0-pre
-  mask_text_input_formatter: ^2.3.0
+  mask_text_input_formatter: ^2.5.0
 
 
 dev_dependencies:

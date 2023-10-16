@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import 'country.dart';
-import 'country_picker_theme_data.dart';
+import 'country_model.dart';
 import 'country_list_view.dart';
+import 'country_picker_theme_data.dart';
+
+import 'helpers/enums.dart';
 
 void showCountryListBottomSheet({
   required BuildContext context,
@@ -19,9 +21,9 @@ void showCountryListBottomSheet({
   bool showWorldWide = false,
   bool showSearch = true,
   bool useSafeArea = false,
-  bool isCupertinoBottomSheet = false,
+  SheetType sheetType = SheetType.material,
 }) {
-  if (isCupertinoBottomSheet) {
+  if (sheetType == SheetType.cupertino) {
     showCupertinoModalBottomSheet(
       expand: true,
       context: context,

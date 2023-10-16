@@ -19,7 +19,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   modal_bottom_sheet: ^3.0.0-pre
 
-  country_picker:
+  flutter_country_picker:
     path: ../
 
 dev_dependencies:
@@ -28,3 +28,20 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: SF-Pro-Rounded
+      fonts:
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Black.otf
+          weight: 900
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Heavy.otf
+          weight: 800
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Bold.otf
+          weight: 700
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Semibold.otf
+          weight: 600
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Medium.otf
+          weight: 500
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Regular.otf
+          weight: 400
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Light.otf
+          weight: 300

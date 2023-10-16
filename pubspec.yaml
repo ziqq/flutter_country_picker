@@ -1,13 +1,14 @@
-name: country_picker
+name: flutter_country_picker
 description: A flutter package to select a country from a list of countries.
-
-version: 3.0.0
 
 homepage: https://github.com/ziqq
 repository: https://github.com/ziqq/flutter_country_picker
 
+version: 3.1.0
+
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.19.0 <=4.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
@@ -17,9 +18,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   grouped_list: ^5.1.2
   modal_bottom_sheet: ^3.0.0-pre
+  mask_text_input_formatter: ^2.3.0
 
-
-flutter:
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +29,23 @@ dev_dependencies:
     git:
       url: https://github.com/ziqq/flutter_lint_rules.git
       ref: main
+
+
+flutter:
+  fonts:
+    - family: SF-Pro-Rounded
+      fonts:
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Black.otf
+          weight: 900
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Heavy.otf
+          weight: 800
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Bold.otf
+          weight: 700
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Semibold.otf
+          weight: 600
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Medium.otf
+          weight: 500
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Regular.otf
+          weight: 400
+        - asset: assets/fonts/SF-Pro/SF-Pro-Rounded-Light.otf
+          weight: 300

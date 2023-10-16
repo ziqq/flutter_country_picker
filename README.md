@@ -8,7 +8,7 @@ A flutter package to select a country from a list of countries.
 
 ## Screenshots
 
-<a href="https://github.com/ziqq/flutter_country_picker/#/"><img width="425" alt="light theme screenshot" src="https://raw.githubusercontent.com/ziqq/flutter_country_picker/master/.docs/screenshots/1.png"></a>&nbsp;&nbsp;<a href="https://github.com/ziqq/flutter_country_picker/#/"><img width="425" alt="dark theme screenshot" src="https://raw.githubusercontent.com/ziqq/flutter_country_picker/master/.docs/screenshots/2.png"></a>
+<a href="https://github.com/ziqq/flutter_country_picker/#/"><img width="420" alt="light theme screenshot" src="https://raw.githubusercontent.com/ziqq/flutter_country_picker/master/.docs/screenshots/1.png"></a>&nbsp;&nbsp;<a href="https://github.com/ziqq/flutter_country_picker/#/"><img width="420" alt="dark theme screenshot" src="https://raw.githubusercontent.com/ziqq/flutter_country_picker/master/.docs/screenshots/2.png"></a>
 
 ```sh
   Screenshots must be here

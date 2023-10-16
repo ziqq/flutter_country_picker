@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 
-import 'country.dart';
+import 'country_model.dart';
 import 'res/country_codes.dart';
 
 class CountryService {

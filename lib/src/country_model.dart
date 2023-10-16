@@ -32,6 +32,9 @@ class Country {
   final bool geographic;
   final int level;
 
+  /// The country phone mask, whitout [countryCode]
+  final String? mask;
+
   /// The country name in English
   final String name;
 
@@ -70,6 +73,7 @@ class Country {
     required this.e164Key,
     this.nameLocalized = '',
     this.fullExampleWithPlusSign,
+    this.mask,
   });
 
   Country copyWith({
@@ -79,12 +83,13 @@ class Country {
     String? e164Key,
     bool? geographic,
     int? level,
+    String? displayName,
+    String? displayNameNoCountryCode,
+    String? example,
+    String? fullExampleWithPlusSign,
+    String? mask,
     String? name,
     String? nameLocalized,
-    String? example,
-    String? displayName,
-    String? fullExampleWithPlusSign,
-    String? displayNameNoCountryCode,
   }) {
     return Country(
       phoneCode: phoneCode ?? this.phoneCode,
@@ -93,14 +98,15 @@ class Country {
       e164Key: e164Key ?? this.e164Key,
       geographic: geographic ?? this.geographic,
       level: level ?? this.level,
-      name: name ?? this.name,
-      nameLocalized: nameLocalized ?? this.nameLocalized,
-      example: example ?? this.example,
       displayName: displayName ?? this.displayName,
-      fullExampleWithPlusSign:
-          fullExampleWithPlusSign ?? this.fullExampleWithPlusSign,
       displayNameNoCountryCode:
           displayNameNoCountryCode ?? this.displayNameNoCountryCode,
+      example: example ?? this.example,
+      fullExampleWithPlusSign:
+          fullExampleWithPlusSign ?? this.fullExampleWithPlusSign,
+      mask: mask ?? this.mask,
+      name: name ?? this.name,
+      nameLocalized: nameLocalized ?? this.nameLocalized,
     );
   }
 
@@ -116,6 +122,7 @@ class Country {
         displayName = json['display_name'] as String,
         fullExampleWithPlusSign =
             json['full_example_with_plus_sign'] as String?,
+        mask = json['mask'] as String?,
         displayNameNoCountryCode = json['display_name_no_e164_cc'] as String,
         e164Key = json['e164_key'] as String;
 
@@ -172,7 +179,7 @@ class Country {
 
   @override
   String toString() =>
-      'Country(countryCode: $countryCode, name: $name, nameLocalized: $nameLocalized, phoneCode: $phoneCode, fullExampleWithPlusSign: $fullExampleWithPlusSign)';
+      'Country(countryCode: $countryCode, name: $name, nameLocalized: $nameLocalized, phoneCode: $phoneCode, mask: $mask, fullExampleWithPlusSign: $fullExampleWithPlusSign)';
 
   @override
   bool operator ==(Object other) {
@@ -189,6 +196,8 @@ class Country {
   /// provides country flag as emoji.
   /// Can be displayed using
   ///
-  ///```Text(country.flagEmoji)```
+  ///```dart
+  /// Text(country.flagEmoji)
+  /// ```
   String get flagEmoji => Utils.countryCodeToEmoji(countryCode);
 }

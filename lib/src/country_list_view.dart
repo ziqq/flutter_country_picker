@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:grouped_list/grouped_list.dart';
 
-import 'country.dart';
+import 'country_model.dart';
 import 'country_service.dart';
 import 'country_localizations.dart';
 import 'country_picker_theme_data.dart';

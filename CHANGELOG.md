@@ -33,7 +33,7 @@
     ```Dart
       showCountryPicker(
         context: context,
-        countryListTheme: CountryListThemeData(
+        countryListTheme: CountryPickerThemeData(
           // Optional. Styles the text in the search field
           searchTextStyle: TextStyle(
             color: Colors.blue,
@@ -81,7 +81,7 @@
     ```Dart
     showCountryPicker(
       context: context,
-      countryListTheme: CountryListThemeData(
+      countryListTheme: CountryPickerThemeData(
        bottomSheetHeight: 500, // Optional. Country list modal height
       ),
       onSelect: (Country country) => print('Select country: ${country.displayName}'),
@@ -142,7 +142,7 @@
     ```Dart
     showCountryPicker(
       context: context,
-      countryListTheme: CountryListThemeData(
+      countryListTheme: CountryPickerThemeData(
         // Optional. Sets the border radius for the bottomsheet.
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(40.0),
@@ -183,7 +183,7 @@
     ```Dart
     showCountryPicker(
       context: context,
-      countryListTheme: CountryListThemeData(
+      countryListTheme: CountryPickerThemeData(
         flagSize: 25,
         backgroundColor: Colors.white,
         textStyle: TextStyle(fontSize: 16, color: Colors.blueGrey),

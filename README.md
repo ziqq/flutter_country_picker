@@ -10,23 +10,19 @@ A flutter package to select a country from a list of countries.
 
 <a href="https://github.com/ziqq/flutter_country_picker/#/"><img width="412.5" alt="light theme screenshot" src="https://raw.githubusercontent.com/ziqq/flutter_country_picker/master/.docs/screenshots/1.png"></a>&nbsp;<a href="https://github.com/ziqq/flutter_country_picker/#/"><img width="412.5" alt="dark theme screenshot" src="https://raw.githubusercontent.com/ziqq/flutter_country_picker/master/.docs/screenshots/2.png"></a>
 
-```sh
-  Screenshots must be here
-```
-
 ## Getting Started
 
- Add the package to your pubspec.yaml:
+Add the package to your pubspec.yaml:
 
- ```yaml
-  flutter_country_picker: last version
- ```
+```yaml
+flutter_country_picker: last version
+```
 
- In your dart file, import the library:
+In your dart file, import the library:
 
- ```dart
-  import 'package:flutter_country_picker/flutter_country_picker.dart';
- ```
+```dart
+import 'package:flutter_country_picker/flutter_country_picker.dart';
+```
 
 Show country picker using `showCountryPicker`:
 ```dart
@@ -35,6 +31,44 @@ showCountryPicker(
   showPhoneCode: true, // optional. Shows phone code before the country name.
   onSelect: (Country country) {
     print('Select country: ${country.displayName}');
+  },
+);
+```
+
+Use country phone input without country picker using `CountryPhoneInput`:
+```dart
+CountryPhoneInput(
+  mask: _mask, // Optional. To channge
+  country: _country,
+  countryCode: _countryCode,
+);
+```
+
+Use country phone input with country picker using `CountryPhoneInput`:
+
+```dart
+CountryPhoneInput(
+  mask: _mask, // Optional.
+  country: _country,
+  countryCode: _countryCode,
+  onTap: () {
+    showCountryPicker(
+      context: context,
+      favorite: ['RU'],
+      exclude: ['KN', 'MF'],
+      showPhoneCode: true,
+      sheetType: SheetType.cupertino,
+      onSelect: (Country country) {
+        setState(() {
+          _country = '${country.flagEmoji} ${country.nameLocalized}';
+          _countryCode = country.phoneCode;
+          _mask = country.mask;
+        });
+      },
+      onClosed: () {
+        log('[DEBUG]: onClosed called');
+      },
+    );
   },
 );
 ```
@@ -62,14 +96,6 @@ MaterialApp(
 ```
 
 ### Parameters:
-* `sheetType`: Can be used to defines the type of [ModalBottomSheet] can be `material` or `cupertino`, which in turn determines the type of method used for [showModalBottomSheet]. Used packge [modal_bottom_sheet](https://pub.dev/packages/modal_bottom_sheet)
-  ```dart
-  showCountryPicker(
-    context: context,
-    sheetType: SheetType.cupertino,
-  );
-  ```
-
 * `onSelect`: Called when a country is selected. The country picker passes the new value to the callback (required)
 
 * `onClosed`: Called when CountryPicker is dismissed, whether a country is selected or not (optional).
@@ -82,7 +108,13 @@ MaterialApp(
 
 * `showWorldWide` An optional argument for showing "World Wide" option at the beginning of the list
 
-* `favorite` Can be used to show the favorite countries at the top of the list (optional).
+* `sheetType`: Can be used to defines the type of [ModalBottomSheet] can be `material` or `cupertino`, which in turn determines the type of method used for [showModalBottomSheet]. Used packge [modal_bottom_sheet](https://pub.dev/packages/modal_bottom_sheet)
+  ```dart
+  showCountryPicker(
+    context: context,
+    sheetType: SheetType.cupertino,
+  );
+  ```
 
 * `countryListTheme`: Can be used to customize the country list's bottom sheet and widgets that lie within it. (optional).
 
@@ -129,6 +161,8 @@ MaterialApp(
 * `countryFilter`: Can be used to filter the countries list (optional).
   - It takes a list of country code(iso2).
   - Can't provide both exclude and countryFilter
+
+* `favorite` Can be used to show the favorite countries at the top of the list (optional).
 
 
 ## Contributions

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import 'country.dart';
-import 'country_list_theme_data.dart';
+import 'country_picker_theme_data.dart';
 import 'country_list_view.dart';
 
 void showCountryListBottomSheet({
@@ -14,7 +14,7 @@ void showCountryListBottomSheet({
   List<String>? exclude,
   List<String>? countryFilter,
   bool showPhoneCode = false,
-  CountryListThemeData? countryListTheme,
+  CountryPickerThemeData? countryPickerThemeData,
   bool searchAutofocus = false,
   bool showWorldWide = false,
   bool showSearch = true,
@@ -33,7 +33,7 @@ void showCountryListBottomSheet({
         exclude,
         countryFilter,
         showPhoneCode,
-        countryListTheme,
+        countryPickerThemeData,
         searchAutofocus,
         showWorldWide,
         showSearch,
@@ -55,7 +55,7 @@ void showCountryListBottomSheet({
         exclude,
         countryFilter,
         showPhoneCode,
-        countryListTheme,
+        countryPickerThemeData,
         searchAutofocus,
         showWorldWide,
         showSearch,
@@ -74,48 +74,48 @@ Widget _builder(
   List<String>? exclude,
   List<String>? countryFilter,
   bool showPhoneCode,
-  CountryListThemeData? countryListTheme,
+  CountryPickerThemeData? countryPickerThemeData,
   bool searchAutofocus,
   bool showWorldWide,
   bool showSearch,
 ) {
-  final device = MediaQuery.of(context).size.height;
-  final statusBarHeight = MediaQuery.of(context).padding.top;
-  final height = countryListTheme?.bottomSheetHeight ??
-      device - (statusBarHeight + (kToolbarHeight / 1.5));
+  final MediaQueryData mediaQuery = MediaQuery.of(context);
 
-  Color? backgroundColor = countryListTheme?.backgroundColor ??
-      Theme.of(context).bottomSheetTheme.backgroundColor;
+  final deviceHeight = mediaQuery.size.height;
+  final statusBarHeight = mediaQuery.padding.top;
+  final effectiveHeight = countryPickerThemeData?.bottomSheetHeight ??
+      deviceHeight - (statusBarHeight + (kToolbarHeight / 1.5));
 
-  backgroundColor ??= CupertinoDynamicColor.resolve(
-    CupertinoColors.systemBackground,
-    context,
-  );
+  final Color effectiveBackgroundColor = countryPickerThemeData
+          ?.backgroundColor ??
+      Theme.of(context).bottomSheetTheme.backgroundColor ??
+      CupertinoDynamicColor.resolve(CupertinoColors.systemBackground, context);
 
-  final BorderRadius borderRadius = countryListTheme?.borderRadius ??
-      const BorderRadius.only(
-        topLeft: Radius.circular(10.0),
-        topRight: Radius.circular(10.0),
-      );
+  final BorderRadius effectiveBorderRadius =
+      countryPickerThemeData?.borderRadius ??
+          const BorderRadius.only(
+            topLeft: Radius.circular(10.0),
+            topRight: Radius.circular(10.0),
+          );
 
   return Container(
-    height: height,
-    padding: countryListTheme?.padding,
-    margin: countryListTheme?.margin,
+    height: effectiveHeight,
+    margin: countryPickerThemeData?.margin,
+    padding: countryPickerThemeData?.padding,
     decoration: BoxDecoration(
-      color: backgroundColor,
-      borderRadius: borderRadius,
+      color: effectiveBackgroundColor,
+      borderRadius: effectiveBorderRadius,
     ),
     child: CountryListView(
-      onSelect: onSelect,
       exclude: exclude,
       favorite: favorite,
       countryFilter: countryFilter,
-      showPhoneCode: showPhoneCode,
-      countryListTheme: countryListTheme,
-      searchAutofocus: searchAutofocus,
-      showWorldWide: showWorldWide,
+      onSelect: onSelect,
       showSearch: showSearch,
+      showPhoneCode: showPhoneCode,
+      showWorldWide: showWorldWide,
+      searchAutofocus: searchAutofocus,
+      countryPickerThemeData: countryPickerThemeData,
     ),
   );
 }

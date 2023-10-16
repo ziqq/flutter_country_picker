@@ -50,7 +50,8 @@ class CountryLocalizations {
 
   /// A [LocalizationsDelegate] that uses [_CountryLocalizationsDelegate.load]
   /// to create an instance of this class.
-  static const LocalizationsDelegate<CountryLocalizations> delegate = _CountryLocalizationsDelegate();
+  static const LocalizationsDelegate<CountryLocalizations> delegate =
+      _CountryLocalizationsDelegate();
 
   /// The localized country name for the given country code.
   String? countryName({required String countryCode}) {
@@ -111,7 +112,8 @@ class CountryLocalizations {
   }
 }
 
-class _CountryLocalizationsDelegate extends LocalizationsDelegate<CountryLocalizations> {
+class _CountryLocalizationsDelegate
+    extends LocalizationsDelegate<CountryLocalizations> {
   const _CountryLocalizationsDelegate();
 
   @override

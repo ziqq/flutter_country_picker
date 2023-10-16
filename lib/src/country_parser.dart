@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-import '../country_picker.dart';
+import '../flutter_country_picker.dart';
 
+import 'helpers/typesdef.dart';
 import 'res/country_codes.dart';
 import 'res/strings/ar.dart';
 import 'res/strings/cn.dart';
@@ -128,18 +129,18 @@ class CountryParser {
 
   /// Returns a country that matches the [countryCode] (e164_cc).
   static Country _getFromPhoneCode(String phoneCode) {
-    return Country.from(
-      json: countryCodes.singleWhere(
-        (Map<String, dynamic> c) => c['e164_cc'] == phoneCode,
+    return Country.fromJson(
+      countryCodes.singleWhere(
+        (JSON j) => j['e164_cc'] == phoneCode,
       ),
     );
   }
 
   /// Returns a country that matches the [countryCode] (iso2_cc).
   static Country _getFromCode(String countryCode) {
-    return Country.from(
-      json: countryCodes.singleWhere(
-        (Map<String, dynamic> c) => c['iso2_cc'] == countryCode,
+    return Country.fromJson(
+      countryCodes.singleWhere(
+        (JSON j) => j['iso2_cc'] == countryCode,
       ),
     );
   }
@@ -206,7 +207,7 @@ class CountryParser {
     return code;
   }
 
-  // ToDo: solution to prevent manual update on adding new localizations?
+  // TODO(ziqq): solution to prevent manual update on adding new localizations?
   /// Returns a translation for the given [locale]. Defaults to english.
   static Map<String, String> _getTranslation(Locale locale) {
     switch (locale.languageCode) {
@@ -265,7 +266,7 @@ class CountryParser {
     }
   }
 
-  // ToDo: solution to prevent manual update on adding new localizations?
+  // TODO(ziqq): solution to prevent manual update on adding new localizations?
   /// A list of the supported locales, except those included in the [exclude]
   /// list.
   static List<Locale> _supportedLanguages({

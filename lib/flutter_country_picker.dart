@@ -1,16 +1,17 @@
-library country_picker;
+library flutter_country_picker;
 
 import 'package:flutter/material.dart';
 
 import 'src/country.dart';
 import 'src/country_list_bottom_sheet.dart';
-import 'src/country_list_theme_data.dart';
+import 'src/country_picker_theme_data.dart';
 
 export 'src/country.dart';
-export 'src/country_list_theme_data.dart';
+export 'src/country_picker_theme_data.dart';
 export 'src/country_localizations.dart';
 export 'src/country_parser.dart';
 export 'src/country_service.dart';
+export 'src/country_phone_input.dart';
 
 /// Shows a bottom sheet containing a list of countries to select one.
 ///
@@ -30,7 +31,7 @@ export 'src/country_service.dart';
 ///
 /// An optional [showPhoneCode] argument can be used to show phone code.
 ///
-/// [countryListTheme] can be used to customizing the country list bottom sheet.
+/// [countryPickerThemeData] can be used to customizing the country list bottom sheet.
 ///
 /// [onClosed] callback which is called when CountryPicker is dismiss,
 /// whether a country is selected or not.
@@ -49,9 +50,9 @@ void showCountryPicker({
   List<String>? favorite,
   List<String>? exclude,
   List<String>? countryFilter,
-  bool showPhoneCode = false,
-  CountryListThemeData? countryListTheme,
+  CountryPickerThemeData? countryPickerThemeData,
   bool searchAutofocus = false,
+  bool showPhoneCode = false,
   bool showWorldWide = false,
   bool showSearch = true,
   bool useSafeArea = false,
@@ -63,17 +64,17 @@ void showCountryPicker({
   );
   showCountryListBottomSheet(
     context: context,
-    onSelect: onSelect,
-    onClosed: onClosed,
     exclude: exclude,
     favorite: favorite,
     countryFilter: countryFilter,
-    showPhoneCode: showPhoneCode,
-    countryListTheme: countryListTheme,
-    searchAutofocus: searchAutofocus,
-    showWorldWide: showWorldWide,
     showSearch: showSearch,
+    showPhoneCode: showPhoneCode,
+    showWorldWide: showWorldWide,
+    searchAutofocus: searchAutofocus,
+    onClosed: onClosed,
+    onSelect: onSelect,
     useSafeArea: useSafeArea,
     isCupertinoBottomSheet: isCupertinoBottomSheet,
+    countryPickerThemeData: countryPickerThemeData,
   );
 }

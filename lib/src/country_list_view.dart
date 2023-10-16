@@ -3,22 +3,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:grouped_list/grouped_list.dart';
 
 import 'country.dart';
-import 'country_list_theme_data.dart';
-import 'country_localizations.dart';
 import 'country_service.dart';
-import 'res/country_codes.dart';
-import 'helpers/utils.dart';
+import 'country_localizations.dart';
+import 'country_picker_theme_data.dart';
 
-const _kDefaultTextStyle = TextStyle(fontSize: 16);
+import 'helpers/utils.dart';
+import 'helpers/constants.dart';
 
 class CountryListView extends StatefulWidget {
+  /// An optional argument for hiding the search bar
+  final bool showSearch;
+
+  /// An optional [showPhoneCode] argument can be used to show phone code.
+  final bool showPhoneCode;
+
+  /// An optional argument for showing "World Wide" option at the beginning of the list
+  final bool showWorldWide;
+
+  /// An optional argument for initially expanding virtual keyboard
+  final bool searchAutofocus;
+
+  /// An optional argiment for default padding.
+  final double padding;
+
   /// Called when a country is select.
   ///
   /// The country picker passes the new value to the callback.
   final ValueChanged<Country> onSelect;
-
-  /// An optional [showPhoneCode] argument can be used to show phone code.
-  final bool showPhoneCode;
 
   /// An optional [exclude] argument can be used to exclude(remove) one ore more
   /// country from the countries list. It takes a list of country code(iso2).
@@ -36,16 +47,7 @@ class CountryListView extends StatefulWidget {
 
   /// An optional argument for customizing the
   /// country list bottom sheet.
-  final CountryListThemeData? countryListTheme;
-
-  /// An optional argument for initially expanding virtual keyboard
-  final bool searchAutofocus;
-
-  /// An optional argument for showing "World Wide" option at the beginning of the list
-  final bool showWorldWide;
-
-  /// An optional argument for hiding the search bar
-  final bool showSearch;
+  final CountryPickerThemeData? countryPickerThemeData;
 
   const CountryListView({
     Key? key,
@@ -53,11 +55,12 @@ class CountryListView extends StatefulWidget {
     this.exclude,
     this.favorite,
     this.countryFilter,
-    this.showPhoneCode = false,
-    this.countryListTheme,
-    this.searchAutofocus = false,
-    this.showWorldWide = false,
+    this.countryPickerThemeData,
+    this.padding = kDefaultPadding,
     this.showSearch = true,
+    this.showPhoneCode = false,
+    this.showWorldWide = false,
+    this.searchAutofocus = false,
   })  : assert(
           exclude == null || countryFilter == null,
           'Cannot provide both exclude and countryFilter',
@@ -85,12 +88,10 @@ class _CountryListViewState extends State<CountryListView> {
 
     _countryList = _countryService.getAll();
 
-    _countryList = countryCodes.map((c) => Country.from(json: c)).toList();
-
     // Remove duplicates country if not use phone code
     if (!widget.showPhoneCode) {
       final ids = _countryList.map((e) => e.countryCode).toSet();
-      _countryList.retainWhere((country) => ids.remove(country.countryCode));
+      _countryList.retainWhere((c) => ids.remove(c.countryCode));
     }
 
     // if (widget.favorite != null) {
@@ -99,13 +100,13 @@ class _CountryListViewState extends State<CountryListView> {
 
     if (widget.exclude != null) {
       _countryList.removeWhere(
-        (element) => widget.exclude!.contains(element.countryCode),
+        (e) => widget.exclude!.contains(e.countryCode),
       );
     }
 
     if (widget.countryFilter != null) {
       _countryList.removeWhere(
-        (element) => !widget.countryFilter!.contains(element.countryCode),
+        (e) => !widget.countryFilter!.contains(e.countryCode),
       );
     }
 
@@ -130,141 +131,158 @@ class _CountryListViewState extends State<CountryListView> {
   Widget build(BuildContext context) {
     final CountryLocalizations? t = CountryLocalizations.of(context);
 
-    final String searchPlaceholder =
-        t?.countryName(countryCode: 'search') ?? 'Поиск';
     final String cancelButtonText =
         t?.countryName(countryCode: 'cancel') ?? 'Отмена';
 
-    final Color stickyHeaderBackgroundColor = CupertinoDynamicColor.resolve(
-      CupertinoColors.secondarySystemBackground,
-      context,
-    );
+    final String searchPlaceholder =
+        t?.countryName(countryCode: 'search') ?? 'Поиск';
 
-    return ClipRRect(
-      borderRadius: BorderRadius.only(
-        topLeft: widget.countryListTheme?.borderRadius?.topLeft ??
-            const Radius.circular(10),
-        topRight: widget.countryListTheme?.borderRadius?.topRight ??
-            const Radius.circular(10),
-      ),
-      child: Column(
-        children: [
-          if (widget.showSearch) ...[
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              decoration: BoxDecoration(
-                color: stickyHeaderBackgroundColor,
-                border: Border(
-                  bottom: BorderSide(
-                    color: CupertinoDynamicColor.resolve(
-                      CupertinoColors.separator,
-                      context,
+    final CountryPickerThemeData? _customThemeData =
+        widget.countryPickerThemeData;
+
+    final double effectiveIndent =
+        _customThemeData?.baseIndent ?? kDefaultIndent;
+
+    final double effectivePadding =
+        _customThemeData?.basePadding ?? kDefaultPadding;
+
+    final Color effectiveStickyHeaderBackgroundColor =
+        _customThemeData?.stickyHeaderBackgroundColor ??
+            CupertinoDynamicColor.resolve(
+                CupertinoColors.secondarySystemBackground, context);
+
+    final Color effectiveDividerColor = _customThemeData?.dividerColor ??
+        CupertinoDynamicColor.resolve(CupertinoColors.opaqueSeparator, context);
+
+    return GestureDetector(
+      onTap: () {
+        final FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft:
+              _customThemeData?.borderRadius?.topLeft ?? kDefaultBorderRadius,
+          topRight:
+              _customThemeData?.borderRadius?.topRight ?? kDefaultBorderRadius,
+        ),
+        child: Column(
+          children: [
+            if (widget.showSearch) ...[
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: effectiveIndent,
+                  vertical: effectiveIndent / 2,
+                ),
+                decoration: BoxDecoration(
+                  color: effectiveStickyHeaderBackgroundColor,
+                  border: Border(
+                    bottom: BorderSide(
+                      color: effectiveDividerColor,
                     ),
                   ),
                 ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: CupertinoSearchTextField(
+                        placeholder: searchPlaceholder,
+                        autofocus: _searchAutofocus,
+                        controller: _searchController,
+                        onChanged: _filterSearchResults,
+                        suffixInsets: EdgeInsetsDirectional.only(
+                          end: effectiveIndent / 2,
+                        ),
+                        style: widget.countryPickerThemeData?.searchTextStyle ??
+                            kDefaultTextStyle,
+                      ),
+                    ),
+                    SizedBox(width: effectiveIndent),
+                    CupertinoButton(
+                      padding: EdgeInsets.zero,
+                      child: Text(cancelButtonText),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ],
+                ),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Flexible(
-                    child: CupertinoSearchTextField(
-                      placeholder: searchPlaceholder,
-                      autofocus: _searchAutofocus,
-                      controller: _searchController,
-                      onChanged: _filterSearchResults,
-                      suffixInsets: const EdgeInsetsDirectional.only(end: 5),
-                      style: widget.countryListTheme?.searchTextStyle ??
-                          _kDefaultTextStyle,
+            ],
+            Expanded(
+              child: GroupedListView(
+                shrinkWrap: true,
+                useStickyGroupSeparators: true,
+                stickyHeaderBackgroundColor:
+                    effectiveStickyHeaderBackgroundColor,
+                elements: _filteredList,
+                groupBy: (Country e) => e
+                    .copyWith(
+                        nameLocalized: t
+                            ?.countryName(countryCode: e.countryCode)
+                            ?.replaceAll(RegExp(r'\s+'), ' '))
+                    .nameLocalized
+                    ?.characters
+                    .first,
+                separator: Divider(
+                  height: 1,
+                  thickness: 1,
+                  indent: effectivePadding,
+                  endIndent: effectivePadding,
+                  color: effectiveDividerColor,
+                ),
+                groupSeparatorBuilder: (String? name) => Container(
+                  color: effectiveStickyHeaderBackgroundColor,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: effectivePadding,
+                    vertical: effectivePadding / 3,
+                  ),
+                  child: Text(
+                    name ?? '',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      color: CupertinoDynamicColor.resolve(
+                        CupertinoColors.label,
+                        context,
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  CupertinoButton(
-                    padding: EdgeInsets.zero,
-                    child: Text(cancelButtonText),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
-                ],
+                ),
+                itemBuilder: (_, Country e) => _CountryListItem(
+                  country: e,
+                  onSelect: widget.onSelect,
+                  countryPickerThemeData: widget.countryPickerThemeData,
+                ),
+
+                // children: [
+                //   if (_favoriteList != null) ...[
+                //     ..._favoriteList!
+                //         .map((c) => _CountryListItem(
+                //               country: c,
+                //               onSelect: widget.onSelect,
+                //               countryPickerThemeData: widget.countryPickerThemeData,
+                //             ))
+                //         .toList(),
+                //     const Padding(
+                //       padding: EdgeInsets.symmetric(horizontal: 16.0),
+                //       child: Divider(thickness: 1, height: 1),
+                //     ),
+                //   ],
+                //   ..._filteredList
+                //       .map((c) => _CountryListItem(
+                //             country: c,
+                //             onSelect: widget.onSelect,
+                //             countryPickerThemeData: widget.countryPickerThemeData,
+                //           ))
+                //       .toList(),
+                // ],
               ),
             ),
           ],
-          Expanded(
-            child: GroupedListView(
-              shrinkWrap: true,
-              useStickyGroupSeparators: true,
-              elements: _filteredList,
-              groupBy: (Country e) => e
-                  .copyWith(
-                      nameLocalized: t
-                          ?.countryName(countryCode: e.countryCode)
-                          ?.replaceAll(RegExp(r'\s+'), ' '))
-                  .nameLocalized
-                  ?.characters
-                  .first,
-              stickyHeaderBackgroundColor: stickyHeaderBackgroundColor,
-              separator: Divider(
-                thickness: 1,
-                height: 1,
-                indent: 16,
-                endIndent: 16,
-                color: CupertinoDynamicColor.resolve(
-                  CupertinoColors.separator,
-                  context,
-                ),
-              ),
-              groupSeparatorBuilder: (String? name) => Container(
-                color: stickyHeaderBackgroundColor,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 5,
-                ),
-                child: Text(
-                  name ?? '',
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                    color: CupertinoDynamicColor.resolve(
-                      MediaQueryData.fromWindow(
-                                WidgetsBinding.instance.window,
-                              ).platformBrightness ==
-                              Brightness.dark
-                          ? CupertinoColors.label
-                          : CupertinoColors.placeholderText,
-                      context,
-                    ),
-                  ),
-                ),
-              ),
-              itemBuilder: (_, Country e) => _CountryListItem(
-                country: e,
-                onSelect: widget.onSelect,
-                countryListTheme: widget.countryListTheme,
-              ),
-
-              // children: [
-              //   if (_favoriteList != null) ...[
-              //     ..._favoriteList!
-              //         .map((c) => _CountryListItem(
-              //               country: c,
-              //               onSelect: widget.onSelect,
-              //               countryListTheme: widget.countryListTheme,
-              //             ))
-              //         .toList(),
-              //     const Padding(
-              //       padding: EdgeInsets.symmetric(horizontal: 16.0),
-              //       child: Divider(thickness: 1, height: 1),
-              //     ),
-              //   ],
-              //   ..._filteredList
-              //       .map((c) => _CountryListItem(
-              //             country: c,
-              //             onSelect: widget.onSelect,
-              //             countryListTheme: widget.countryListTheme,
-              //           ))
-              //       .toList(),
-              // ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -297,11 +315,11 @@ class _CountryListItem extends StatelessWidget {
 
   /// An optional argument for customizing the
   /// country list bottom sheet.
-  final CountryListThemeData? countryListTheme;
+  final CountryPickerThemeData? countryPickerThemeData;
 
   const _CountryListItem({
     required this.country,
-    this.countryListTheme,
+    this.countryPickerThemeData,
     this.onSelect,
     Key? key,
   }) : super(key: key);
@@ -309,13 +327,18 @@ class _CountryListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isRtl = Directionality.of(context) == TextDirection.rtl;
-    final TextStyle textStyle = countryListTheme?.textStyle ??
-        _kDefaultTextStyle.copyWith(
+
+    final TextStyle effectiveTextStyle = countryPickerThemeData?.textStyle ??
+        kDefaultTextStyle.copyWith(
           color: CupertinoDynamicColor.resolve(
             CupertinoColors.label,
             context,
           ),
         );
+
+    final EdgeInsetsGeometry effectivePadding =
+        countryPickerThemeData?.padding ??
+            const EdgeInsets.symmetric(horizontal: kDefaultPadding);
 
     return Material(
       // Add Material Widget with transparent color
@@ -333,21 +356,21 @@ class _CountryListItem extends StatelessWidget {
         child: ListTile(
           dense: true,
           minLeadingWidth: 0,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+          contentPadding: effectivePadding,
           leading: _Flag(
             country: country,
-            countryListTheme: countryListTheme,
+            countryPickerThemeData: countryPickerThemeData,
           ),
           trailing: Text(
             '${isRtl ? '' : '+'}${country.phoneCode}${isRtl ? '+' : ''}',
-            style: textStyle,
+            style: effectiveTextStyle,
           ),
           title: Text(
             CountryLocalizations.of(context)
                     ?.countryName(countryCode: country.countryCode)
                     ?.replaceAll(RegExp(r'\s+'), ' ') ??
                 country.name,
-            style: textStyle,
+            style: effectiveTextStyle,
           ),
         ),
       ),
@@ -357,12 +380,12 @@ class _CountryListItem extends StatelessWidget {
 
 class _Flag extends StatelessWidget {
   final Country country;
-  final CountryListThemeData? countryListTheme;
+  final CountryPickerThemeData? countryPickerThemeData;
 
   const _Flag({
     Key? key,
     required this.country,
-    this.countryListTheme,
+    this.countryPickerThemeData,
   }) : super(key: key);
 
   @override
@@ -376,7 +399,7 @@ class _Flag extends StatelessWidget {
             ? '\uD83C\uDF0D'
             : Utils.countryCodeToEmoji(country.countryCode),
         style: TextStyle(
-          fontSize: countryListTheme?.flagSize ?? 25,
+          fontSize: countryPickerThemeData?.flagSize ?? 25,
         ),
       ),
     );

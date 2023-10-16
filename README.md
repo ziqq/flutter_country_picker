@@ -2,9 +2,7 @@
 
 <!-- [![pub package](https://img.shields.io/pub/v/flutter_country_picker.svg)](https://pub.dev/packages/flutter_country_picker) -->
 
-A flutter package to select a country from a list of countries.
-
-<!-- <img height="600" alt="n1" src="https://raw.githubusercontent.com/Daniel-Ioannou/flutter_country_picker/master/assets/ReadMe%20Screenshot.png"> -->
+A flutter package to select a country from a list of countries.-->
 
 ## Screenshots
 
@@ -37,20 +35,17 @@ showCountryPicker(
 
 Use country phone input without country picker using `CountryPhoneInput`:
 ```dart
-CountryPhoneInput(
-  mask: _mask, // Optional.
-  country: _country, // Optional.
-  countryCode: _countryCode, // Optional.
-);
+CountryPhoneInput();
 ```
 
 Use country phone input with country picker using `CountryPhoneInput`:
 
 ```dart
 CountryPhoneInput(
-  mask: _mask, // Optional.
-  country: _country, // Optional.
-  countryCode: _countryCode, // Optional.
+  controller: _controller,
+  mask: _mask,
+  country: _country,
+  countryCode: _countryCode,
   onTap: () {
     showCountryPicker(
       context: context,
@@ -67,6 +62,19 @@ CountryPhoneInput(
       },
     );
   },
+);
+```
+
+Use `TextEditingController` to get current phone value on any event:
+```dart
+CupertinoButton.filled(
+  onPressed: () {
+    viewModel.phone = "+$_countryCode${_controller.text.replaceAll(" ", "")}";
+  },
+  child: Text(
+    'Submit',
+    style: TextStyle(color: CupertinoColors.white),
+  ),
 );
 ```
 

@@ -89,6 +89,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String _country = '🇷🇺 Россия';
   String _countryCode = '7';
+  String? _mask = '000 000 0000';
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   onPressed: () => showCountryPicker(
                     context: context,
-                    isCupertinoBottomSheet: true,
+                    sheetType: SheetType.cupertino,
                     // Optional.
                     // Can be used to exclude(remove) one ore more country from the countries list (optional).
                     exclude: ['KN', 'MF'],
@@ -128,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                     countryPickerThemeData: CountryPickerThemeData(),
                   ),
                   child: Text(
-                    'Show cupertino country picker',
+                    'Show cupertino picker',
                     style: TextStyle(color: CupertinoColors.white),
                   ),
                 ),
@@ -159,13 +160,15 @@ class _HomePageState extends State<HomePage> {
                     countryPickerThemeData: CountryPickerThemeData(),
                   ),
                   child: Text(
-                    'Show default country picker',
+                    'Show material picker',
                     style: TextStyle(color: CupertinoColors.white),
                   ),
                 ),
               ),
               const SizedBox(height: kDefaultPadding * 2),
               CountryPhoneInput(
+                autofocus: false,
+                mask: _mask,
                 country: _country,
                 countryCode: _countryCode,
                 onTap: () {
@@ -174,14 +177,18 @@ class _HomePageState extends State<HomePage> {
                     favorite: ['RU'],
                     exclude: ['KN', 'MF'],
                     showPhoneCode: true,
-                    isCupertinoBottomSheet: true,
+                    sheetType: SheetType.cupertino,
                     onSelect: (Country country) {
                       log('[DEBUG]: Selected country $country');
                       setState(() {
                         _country =
                             '${country.flagEmoji} ${country.nameLocalized}';
                         _countryCode = country.phoneCode;
+                        _mask = country.mask;
                       });
+                    },
+                    onClosed: () {
+                      log('[DEBUG]: onClosed called');
                     },
                   );
                 },

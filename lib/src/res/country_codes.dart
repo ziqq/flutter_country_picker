@@ -1,4 +1,6 @@
-// ignore_for_file: prefer_single_quotes
+// Albany: 00 000 0000
+// Aljir: 000 00 00 00
+// Barbados: +1246 000 0000
 
 final List<Map<String, dynamic>> countryCodes = [
   {
@@ -10,6 +12,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Afghanistan",
     "example": "701234567",
     "display_name": "Afghanistan (AF) [+93]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+93701234567",
     "display_name_no_e164_cc": "Afghanistan (AF)",
     "e164_key": "93-AF-0"
@@ -60,8 +63,9 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 2,
     "name": "American Samoa",
-    "example": "6847331234",
-    "display_name": "American Samoa (AS) [+1]",
+    "example": "7331234",
+    "display_name": "American Samoa (AS) [+1684]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+16847331234",
     "display_name_no_e164_cc": "American Samoa (AS)",
     "e164_key": "1-AS-0"
@@ -75,6 +79,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Andorra",
     "example": "312345",
     "display_name": "Andorra (AD) [+376]",
+    "mask": "00 00 00",
     "full_example_with_plus_sign": "+376312345",
     "display_name_no_e164_cc": "Andorra (AD)",
     "e164_key": "376-AD-0"
@@ -88,6 +93,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Angola",
     "example": "923123456",
     "display_name": "Angola (AO) [+244]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+244923123456",
     "display_name_no_e164_cc": "Angola (AO)",
     "e164_key": "244-AO-0"
@@ -99,8 +105,9 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 2,
     "name": "Anguilla",
-    "example": "2642351234",
-    "display_name": "Anguilla (AI) [+1]",
+    "example": "2351234",
+    "display_name": "Anguilla (AI) [+1264]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+12642351234",
     "display_name_no_e164_cc": "Anguilla (AI)",
     "e164_key": "1-AI-0"
@@ -112,8 +119,9 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 2,
     "name": "Antigua and Barbuda",
-    "example": "2684641234",
-    "display_name": "Antigua and Barbuda (AG) [+1]",
+    "example": "4641234",
+    "display_name": "Antigua and Barbuda (AG) [+1268]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+12684641234",
     "display_name_no_e164_cc": "Antigua and Barbuda (AG)",
     "e164_key": "1-AG-0"
@@ -127,6 +135,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Argentina",
     "example": "91123456789",
     "display_name": "Argentina (AR) [+54]",
+    "mask": null,
     "full_example_with_plus_sign": "+5491123456789",
     "display_name_no_e164_cc": "Argentina (AR)",
     "e164_key": "54-AR-0"
@@ -140,6 +149,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Armenia",
     "example": "77123456",
     "display_name": "Armenia (AM) [+374]",
+    "mask": "00 000 000",
     "full_example_with_plus_sign": "+37477123456",
     "display_name_no_e164_cc": "Armenia (AM)",
     "e164_key": "374-AM-0"
@@ -153,6 +163,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Aruba",
     "example": "5601234",
     "display_name": "Aruba (AW) [+297]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+2975601234",
     "display_name_no_e164_cc": "Aruba (AW)",
     "e164_key": "297-AW-0"
@@ -179,6 +190,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Australia",
     "example": "412345678",
     "display_name": "Australia (AU) [+61]",
+    "mask": "0 0000 0000",
     "full_example_with_plus_sign": "+61412345678",
     "display_name_no_e164_cc": "Australia (AU)",
     "e164_key": "61-AU-0"
@@ -205,6 +217,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Azerbaijan",
     "example": "401234567",
     "display_name": "Azerbaijan (AZ) [+994]",
+    "mask": "00 000 0000",
     "full_example_with_plus_sign": "+994401234567",
     "display_name_no_e164_cc": "Azerbaijan (AZ)",
     "e164_key": "994-AZ-0"
@@ -216,8 +229,9 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 2,
     "name": "Bahamas",
-    "example": "2423591234",
-    "display_name": "Bahamas (BS) [+1]",
+    "example": "3591234",
+    "display_name": "Bahamas (BS) [+1242]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+12423591234",
     "display_name_no_e164_cc": "Bahamas (BS)",
     "e164_key": "1-BS-0"
@@ -231,6 +245,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Bahrain",
     "example": "36001234",
     "display_name": "Bahrain (BH) [+973]",
+    "mask": "0000 0000",
     "full_example_with_plus_sign": "+97336001234",
     "display_name_no_e164_cc": "Bahrain (BH)",
     "e164_key": "973-BH-0"
@@ -244,6 +259,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Bangladesh",
     "example": "1812345678",
     "display_name": "Bangladesh (BD) [+880]",
+    "mask": "00 000 000",
     "full_example_with_plus_sign": "+8801812345678",
     "display_name_no_e164_cc": "Bangladesh (BD)",
     "e164_key": "880-BD-0"
@@ -270,6 +286,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Belarus",
     "example": "294911911",
     "display_name": "Belarus (BY) [+375]",
+    "mask": "00 000 0000",
     "full_example_with_plus_sign": "+375294911911",
     "display_name_no_e164_cc": "Belarus (BY)",
     "e164_key": "375-BY-0"
@@ -283,6 +300,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Belgium",
     "example": "470123456",
     "display_name": "Belgium (BE) [+32]",
+    "mask": "000 00 00 00",
     "full_example_with_plus_sign": "+32470123456",
     "display_name_no_e164_cc": "Belgium (BE)",
     "e164_key": "32-BE-0"
@@ -296,6 +314,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Belize",
     "example": "6221234",
     "display_name": "Belize (BZ) [+501]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+5016221234",
     "display_name_no_e164_cc": "Belize (BZ)",
     "e164_key": "501-BZ-0"
@@ -309,6 +328,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Benin",
     "example": "90011234",
     "display_name": "Benin (BJ) [+229]",
+    "mask": "00 000 000",
     "full_example_with_plus_sign": "+22990011234",
     "display_name_no_e164_cc": "Benin (BJ)",
     "e164_key": "229-BJ-0"
@@ -320,8 +340,9 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 2,
     "name": "Bermuda",
-    "example": "4413701234",
-    "display_name": "Bermuda (BM) [+1]",
+    "example": "3701234",
+    "display_name": "Bermuda (BM) [+1441]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+14413701234",
     "display_name_no_e164_cc": "Bermuda (BM)",
     "e164_key": "1-BM-0"
@@ -335,6 +356,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Bhutan",
     "example": "17123456",
     "display_name": "Bhutan (BT) [+975]",
+    "mask": "00 000 000",
     "full_example_with_plus_sign": "+97517123456",
     "display_name_no_e164_cc": "Bhutan (BT)",
     "e164_key": "975-BT-0"
@@ -348,6 +370,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Bolivia",
     "example": "71234567",
     "display_name": "Bolivia (BO) [+591]",
+    "mask": "0 000 0000",
     "full_example_with_plus_sign": "+59171234567",
     "display_name_no_e164_cc": "Bolivia (BO)",
     "e164_key": "591-BO-0"
@@ -361,6 +384,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Bosnia and Herzegovina",
     "example": "61123456",
     "display_name": "Bosnia and Herzegovina (BA) [+387]",
+    "mask": "00 000 000",
     "full_example_with_plus_sign": "+38761123456",
     "display_name_no_e164_cc": "Bosnia and Herzegovina (BA)",
     "e164_key": "387-BA-0"
@@ -374,6 +398,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Botswana",
     "example": "71123456",
     "display_name": "Botswana (BW) [+267]",
+    "mask": "00 000 000",
     "full_example_with_plus_sign": "+26771123456",
     "display_name_no_e164_cc": "Botswana (BW)",
     "e164_key": "267-BW-0"
@@ -387,6 +412,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Brazil",
     "example": "1161234567",
     "display_name": "Brazil (BR) [+55]",
+    "mask": "00 00000 0000",
     "full_example_with_plus_sign": "+551161234567",
     "display_name_no_e164_cc": "Brazil (BR)",
     "e164_key": "55-BR-0"
@@ -400,6 +426,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "British Indian Ocean Territory",
     "example": "3801234",
     "display_name": "British Indian Ocean Territory (IO) [+246]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+2463801234",
     "display_name_no_e164_cc": "British Indian Ocean Territory (IO)",
     "e164_key": "246-IO-0"
@@ -413,6 +440,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "British Virgin Islands",
     "example": "2843001234",
     "display_name": "British Virgin Islands (VG) [+1]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+12843001234",
     "display_name_no_e164_cc": "British Virgin Islands (VG)",
     "e164_key": "1-VG-0"
@@ -426,6 +454,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Brunei",
     "example": "7123456",
     "display_name": "Brunei (BN) [+673]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+6737123456",
     "display_name_no_e164_cc": "Brunei (BN)",
     "e164_key": "673-BN-0"
@@ -439,6 +468,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Bulgaria",
     "example": "48123456",
     "display_name": "Bulgaria (BG) [+359]",
+    "mask": null,
     "full_example_with_plus_sign": "+35948123456",
     "display_name_no_e164_cc": "Bulgaria (BG)",
     "e164_key": "359-BG-0"
@@ -452,6 +482,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Burkina Faso",
     "example": "70123456",
     "display_name": "Burkina Faso (BF) [+226]",
+    "mask": "00 00 00 00",
     "full_example_with_plus_sign": "+22670123456",
     "display_name_no_e164_cc": "Burkina Faso (BF)",
     "e164_key": "226-BF-0"
@@ -465,6 +496,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Burundi",
     "example": "79561234",
     "display_name": "Burundi (BI) [+257]",
+    "mask": "00 00 0000",
     "full_example_with_plus_sign": "+25779561234",
     "display_name_no_e164_cc": "Burundi (BI)",
     "e164_key": "257-BI-0"
@@ -842,6 +874,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "East Timor",
     "example": "77212345",
     "display_name": "East Timor (TL) [+670]",
+    "mask": null,
     "full_example_with_plus_sign": "+67077212345",
     "display_name_no_e164_cc": "East Timor (TL)",
     "e164_key": "670-TL-0"
@@ -1048,9 +1081,10 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 1,
     "name": "Gabon",
-    "example": "06031234",
+    "example": "6031234",
     "display_name": "Gabon (GA) [+241]",
-    "full_example_with_plus_sign": "+24106031234",
+    "mask": "0 00 00 00",
+    "full_example_with_plus_sign": "+2416031234",
     "display_name_no_e164_cc": "Gabon (GA)",
     "e164_key": "241-GA-0"
   },
@@ -1063,6 +1097,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Gambia",
     "example": "3012345",
     "display_name": "Gambia (GM) [+220]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+2203012345",
     "display_name_no_e164_cc": "Gambia (GM)",
     "e164_key": "220-GM-0"
@@ -1076,6 +1111,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Georgia",
     "example": "555123456",
     "display_name": "Georgia (GE) [+995]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+995555123456",
     "display_name_no_e164_cc": "Georgia (GE)",
     "e164_key": "995-GE-0"
@@ -1089,6 +1125,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Germany",
     "example": "15123456789",
     "display_name": "Germany (DE) [+49]",
+    "mask": null,
     "full_example_with_plus_sign": "+4915123456789",
     "display_name_no_e164_cc": "Germany (DE)",
     "e164_key": "49-DE-0"
@@ -1102,6 +1139,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Ghana",
     "example": "231234567",
     "display_name": "Ghana (GH) [+233]",
+    "mask": "00 000 0000",
     "full_example_with_plus_sign": "+233231234567",
     "display_name_no_e164_cc": "Ghana (GH)",
     "e164_key": "233-GH-0"
@@ -1115,6 +1153,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Gibraltar",
     "example": "57123456",
     "display_name": "Gibraltar (GI) [+350]",
+    "mask": "0000 0000",
     "full_example_with_plus_sign": "+35057123456",
     "display_name_no_e164_cc": "Gibraltar (GI)",
     "e164_key": "350-GI-0"
@@ -1128,6 +1167,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Greece",
     "example": "6912345678",
     "display_name": "Greece (GR) [+30]",
+    "mask": "000 000 0000",
     "full_example_with_plus_sign": "+306912345678",
     "display_name_no_e164_cc": "Greece (GR)",
     "e164_key": "30-GR-0"
@@ -1141,6 +1181,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Greenland",
     "example": "221234",
     "display_name": "Greenland (GL) [+299]",
+    "mask": "000 000",
     "full_example_with_plus_sign": "+299221234",
     "display_name_no_e164_cc": "Greenland (GL)",
     "e164_key": "299-GL-0"
@@ -1152,8 +1193,9 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 2,
     "name": "Grenada",
-    "example": "4734031234",
-    "display_name": "Grenada (GD) [+1]",
+    "example": "4031234",
+    "display_name": "Grenada (GD) [+1473]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+14734031234",
     "display_name_no_e164_cc": "Grenada (GD)",
     "e164_key": "1-GD-0"
@@ -1167,6 +1209,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Guadeloupe",
     "example": "690301234",
     "display_name": "Guadeloupe (GP) [+590]",
+    "mask": "000 00 00 00",
     "full_example_with_plus_sign": "+590690301234",
     "display_name_no_e164_cc": "Guadeloupe (GP)",
     "e164_key": "590-GP-0"
@@ -1178,8 +1221,9 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 2,
     "name": "Guam",
-    "example": "6713001234",
-    "display_name": "Guam (GU) [+1]",
+    "example": "3001234",
+    "display_name": "Guam (GU) [+1671]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+16713001234",
     "display_name_no_e164_cc": "Guam (GU)",
     "e164_key": "1-GU-0"
@@ -1193,6 +1237,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Guatemala",
     "example": "51234567",
     "display_name": "Guatemala (GT) [+502]",
+    "mask": "0 000 0000",
     "full_example_with_plus_sign": "+50251234567",
     "display_name_no_e164_cc": "Guatemala (GT)",
     "e164_key": "502-GT-0"
@@ -1217,9 +1262,10 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 1,
     "name": "Guinea Conakry",
-    "example": "60201234",
+    "example": "602012345",
     "display_name": "Guinea Conakry (GN) [+224]",
-    "full_example_with_plus_sign": "+22460201234",
+    "mask": "000 000 000",
+    "full_example_with_plus_sign": "+224602012345",
     "display_name_no_e164_cc": "Guinea Conakry (GN)",
     "e164_key": "224-GN-0"
   },
@@ -1230,9 +1276,10 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 1,
     "name": "Guinea-Bissau",
-    "example": "5012345",
+    "example": "501234567",
     "display_name": "Guinea-Bissau (GW) [+245]",
-    "full_example_with_plus_sign": "+2455012345",
+    "mask": "000 00 00 00",
+    "full_example_with_plus_sign": "+245501234567",
     "display_name_no_e164_cc": "Guinea-Bissau (GW)",
     "e164_key": "245-GW-0"
   },
@@ -1245,6 +1292,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Guyana",
     "example": "6091234",
     "display_name": "Guyana (GY) [+592]",
+    "mask": null,
     "full_example_with_plus_sign": "+5926091234",
     "display_name_no_e164_cc": "Guyana (GY)",
     "e164_key": "592-GY-0"
@@ -1258,6 +1306,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Haiti",
     "example": "34101234",
     "display_name": "Haiti (HT) [+509]",
+    "mask": "0000 0000",
     "full_example_with_plus_sign": "+50934101234",
     "display_name_no_e164_cc": "Haiti (HT)",
     "e164_key": "509-HT-0"
@@ -1284,6 +1333,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Honduras",
     "example": "91234567",
     "display_name": "Honduras (HN) [+504]",
+    "mask": "0000 0000",
     "full_example_with_plus_sign": "+50491234567",
     "display_name_no_e164_cc": "Honduras (HN)",
     "e164_key": "504-HN-0"
@@ -1297,6 +1347,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Hong Kong",
     "example": "51234567",
     "display_name": "Hong Kong (HK) [+852]",
+    "mask": "0 000 0000",
     "full_example_with_plus_sign": "+85251234567",
     "display_name_no_e164_cc": "Hong Kong (HK)",
     "e164_key": "852-HK-0"
@@ -1310,6 +1361,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Hungary",
     "example": "201234567",
     "display_name": "Hungary (HU) [+36]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+36201234567",
     "display_name_no_e164_cc": "Hungary (HU)",
     "e164_key": "36-HU-0"
@@ -2532,6 +2584,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Senegal",
     "example": "701012345",
     "display_name": "Senegal (SN) [+221]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+221701012345",
     "display_name_no_e164_cc": "Senegal (SN)",
     "e164_key": "221-SN-0"
@@ -2545,6 +2598,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Serbia",
     "example": "601234567",
     "display_name": "Serbia (RS) [+381]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+381601234567",
     "display_name_no_e164_cc": "Serbia (RS)",
     "e164_key": "381-RS-0"
@@ -2558,6 +2612,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Seychelles",
     "example": "2510123",
     "display_name": "Seychelles (SC) [+248]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+2482510123",
     "display_name_no_e164_cc": "Seychelles (SC)",
     "e164_key": "248-SC-0"
@@ -2571,6 +2626,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Sierra Leone",
     "example": "25123456",
     "display_name": "Sierra Leone (SL) [+232]",
+    "mask": "000 00000",
     "full_example_with_plus_sign": "+23225123456",
     "display_name_no_e164_cc": "Sierra Leone (SL)",
     "e164_key": "232-SL-0"
@@ -2584,6 +2640,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Singapore",
     "example": "81234567",
     "display_name": "Singapore (SG) [+65]",
+    "mask": "0000 0000",
     "full_example_with_plus_sign": "+6581234567",
     "display_name_no_e164_cc": "Singapore (SG)",
     "e164_key": "65-SG-0"
@@ -2597,6 +2654,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Sint Maarten",
     "example": "7215205678",
     "display_name": "Sint Maarten (SX) [+1]",
+    "mask": "000 000 0000",
     "full_example_with_plus_sign": "+17215205678",
     "display_name_no_e164_cc": "Sint Maarten (SX)",
     "e164_key": "1-SX-0"
@@ -2610,6 +2668,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Slovakia",
     "example": "912123456",
     "display_name": "Slovakia (SK) [+421]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+421912123456",
     "display_name_no_e164_cc": "Slovakia (SK)",
     "e164_key": "421-SK-0"
@@ -2623,6 +2682,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Slovenia",
     "example": "31234567",
     "display_name": "Slovenia (SI) [+386]",
+    "mask": "0000 0000",
     "full_example_with_plus_sign": "+38631234567",
     "display_name_no_e164_cc": "Slovenia (SI)",
     "e164_key": "386-SI-0"
@@ -2636,6 +2696,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Solomon Islands",
     "example": "7421234",
     "display_name": "Solomon Islands (SB) [+677]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+6777421234",
     "display_name_no_e164_cc": "Solomon Islands (SB)",
     "e164_key": "677-SB-0"
@@ -2649,6 +2710,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Somalia",
     "example": "90792024",
     "display_name": "Somalia (SO) [+252]",
+    "mask": "0000 0000",
     "full_example_with_plus_sign": "+25290792024",
     "display_name_no_e164_cc": "Somalia (SO)",
     "e164_key": "252-SO-0"
@@ -2662,6 +2724,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "South Africa",
     "example": "711234567",
     "display_name": "South Africa (ZA) [+27]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+27711234567",
     "display_name_no_e164_cc": "South Africa (ZA)",
     "e164_key": "27-ZA-0"
@@ -2675,6 +2738,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "South Georgia and the South Sandwich Islands",
     "example": "",
     "display_name": "South Georgia and the South Sandwich Islands (GS) [+500]",
+    "mask": null,
     "full_example_with_plus_sign": null,
     "display_name_no_e164_cc":
         "South Georgia and the South Sandwich Islands (GS)",
@@ -2689,6 +2753,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "South Korea",
     "example": "1023456789",
     "display_name": "South Korea (KR) [+82]",
+    "mask": "00 0000 0000",
     "full_example_with_plus_sign": "+821023456789",
     "display_name_no_e164_cc": "South Korea (KR)",
     "e164_key": "82-KR-0"
@@ -2702,6 +2767,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "South Sudan",
     "example": "977123456",
     "display_name": "South Sudan (SS) [+211]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+211977123456",
     "display_name_no_e164_cc": "South Sudan (SS)",
     "e164_key": "211-SS-0"
@@ -2715,6 +2781,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Spain",
     "example": "612345678",
     "display_name": "Spain (ES) [+34]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+34612345678",
     "display_name_no_e164_cc": "Spain (ES)",
     "e164_key": "34-ES-0"
@@ -2728,6 +2795,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Sri Lanka",
     "example": "712345678",
     "display_name": "Sri Lanka (LK) [+94]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+94712345678",
     "display_name_no_e164_cc": "Sri Lanka (LK)",
     "e164_key": "94-LK-0"
@@ -2741,6 +2809,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Sudan",
     "example": "911231234",
     "display_name": "Sudan (SD) [+249]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+249911231234",
     "display_name_no_e164_cc": "Sudan (SD)",
     "e164_key": "249-SD-0"
@@ -2754,6 +2823,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Suriname",
     "example": "7412345",
     "display_name": "Suriname (SR) [+597]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+5977412345",
     "display_name_no_e164_cc": "Suriname (SR)",
     "e164_key": "597-SR-0"
@@ -2767,6 +2837,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Svalbard and Jan Mayen",
     "example": "41234567",
     "display_name": "Svalbard and Jan Mayen (SJ) [+47]",
+    "mask": "000 000 00",
     "full_example_with_plus_sign": "+4741234567",
     "display_name_no_e164_cc": "Svalbard and Jan Mayen (SJ)",
     "e164_key": "47-SJ-0"
@@ -2780,6 +2851,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Sweden",
     "example": "701234567",
     "display_name": "Sweden (SE) [+46]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+46701234567",
     "display_name_no_e164_cc": "Sweden (SE)",
     "e164_key": "46-SE-0"
@@ -2793,6 +2865,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Switzerland",
     "example": "741234567",
     "display_name": "Switzerland (CH) [+41]",
+    "mask": "000 000000",
     "full_example_with_plus_sign": "+41741234567",
     "display_name_no_e164_cc": "Switzerland (CH)",
     "e164_key": "41-CH-0"
@@ -2806,6 +2879,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Syria",
     "example": "944567890",
     "display_name": "Syria (SY) [+963]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+963944567890",
     "display_name_no_e164_cc": "Syria (SY)",
     "e164_key": "963-SY-0"
@@ -2819,6 +2893,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Taiwan",
     "example": "912345678",
     "display_name": "Taiwan (TW) [+886]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+886912345678",
     "display_name_no_e164_cc": "Taiwan (TW)",
     "e164_key": "886-TW-0"
@@ -2832,6 +2907,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Tajikistan",
     "example": "917123456",
     "display_name": "Tajikistan (TJ) [+992]",
+    "mask": "000 000 00",
     "full_example_with_plus_sign": "+992917123456",
     "display_name_no_e164_cc": "Tajikistan (TJ)",
     "e164_key": "992-TJ-0"
@@ -2845,6 +2921,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Tanzania",
     "example": "612345678",
     "display_name": "Tanzania (TZ) [+255]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+255612345678",
     "display_name_no_e164_cc": "Tanzania (TZ)",
     "e164_key": "255-TZ-0"
@@ -2858,6 +2935,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Thailand",
     "example": "812345678",
     "display_name": "Thailand (TH) [+66]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+66812345678",
     "display_name_no_e164_cc": "Thailand (TH)",
     "e164_key": "66-TH-0"
@@ -2871,6 +2949,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Togo",
     "example": "90112345",
     "display_name": "Togo (TG) [+228]",
+    "mask": "000 000 00",
     "full_example_with_plus_sign": "+22890112345",
     "display_name_no_e164_cc": "Togo (TG)",
     "e164_key": "228-TG-0"
@@ -2884,6 +2963,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Tokelau",
     "example": "5190",
     "display_name": "Tokelau (TK) [+690]",
+    "mask": "0000",
     "full_example_with_plus_sign": "+6905190",
     "display_name_no_e164_cc": "Tokelau (TK)",
     "e164_key": "690-TK-0"
@@ -2897,6 +2977,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Tonga",
     "example": "7715123",
     "display_name": "Tonga (TO) [+676]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+6767715123",
     "display_name_no_e164_cc": "Tonga (TO)",
     "e164_key": "676-TO-0"
@@ -2910,6 +2991,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Trinidad/Tobago",
     "example": "8682911234",
     "display_name": "Trinidad/Tobago (TT) [+1]",
+    "mask": "000 000 0000",
     "full_example_with_plus_sign": "+18682911234",
     "display_name_no_e164_cc": "Trinidad/Tobago (TT)",
     "e164_key": "1-TT-0"
@@ -2923,6 +3005,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Tunisia",
     "example": "20123456",
     "display_name": "Tunisia (TN) [+216]",
+    "mask": "000 000 00",
     "full_example_with_plus_sign": "+21620123456",
     "display_name_no_e164_cc": "Tunisia (TN)",
     "e164_key": "216-TN-0"
@@ -2936,6 +3019,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Turkey",
     "example": "5012345678",
     "display_name": "Turkey (TR) [+90]",
+    "mask": "000 000 0000",
     "full_example_with_plus_sign": "+905012345678",
     "display_name_no_e164_cc": "Turkey (TR)",
     "e164_key": "90-TR-0"
@@ -2949,6 +3033,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Turkmenistan",
     "example": "66123456",
     "display_name": "Turkmenistan (TM) [+993]",
+    "mask": "000 000 00",
     "full_example_with_plus_sign": "+99366123456",
     "display_name_no_e164_cc": "Turkmenistan (TM)",
     "e164_key": "993-TM-0"
@@ -2962,6 +3047,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Turks and Caicos Islands",
     "example": "6492311234",
     "display_name": "Turks and Caicos Islands (TC) [+1]",
+    "mask": "000 000 0000",
     "full_example_with_plus_sign": "+16492311234",
     "display_name_no_e164_cc": "Turks and Caicos Islands (TC)",
     "e164_key": "1-TC-0"
@@ -2975,6 +3061,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Tuvalu",
     "example": "901234",
     "display_name": "Tuvalu (TV) [+688]",
+    "mask": "000 000",
     "full_example_with_plus_sign": "+688901234",
     "display_name_no_e164_cc": "Tuvalu (TV)",
     "e164_key": "688-TV-0"
@@ -2986,8 +3073,9 @@ final List<Map<String, dynamic>> countryCodes = [
     "geographic": true,
     "level": 2,
     "name": "U.S. Virgin Islands",
-    "example": "3406421234",
-    "display_name": "U.S. Virgin Islands (VI) [+1]",
+    "example": "6421234",
+    "display_name": "U.S. Virgin Islands (VI) [+1340]",
+    "mask": "000 0000",
     "full_example_with_plus_sign": "+13406421234",
     "display_name_no_e164_cc": "U.S. Virgin Islands (VI)",
     "e164_key": "1-VI-0"
@@ -3001,6 +3089,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Uganda",
     "example": "712345678",
     "display_name": "Uganda (UG) [+256]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+256712345678",
     "display_name_no_e164_cc": "Uganda (UG)",
     "e164_key": "256-UG-0"
@@ -3014,6 +3103,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Ukraine",
     "example": "391234567",
     "display_name": "Ukraine (UA) [+380]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+380391234567",
     "display_name_no_e164_cc": "Ukraine (UA)",
     "e164_key": "380-UA-0"
@@ -3027,6 +3117,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "United Arab Emirates",
     "example": "501234567",
     "display_name": "United Arab Emirates (AE) [+971]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+971501234567",
     "display_name_no_e164_cc": "United Arab Emirates (AE)",
     "e164_key": "971-AE-0"
@@ -3040,6 +3131,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "United Kingdom",
     "example": "7400123456",
     "display_name": "United Kingdom (GB) [+44]",
+    "mask": "0000 000000",
     "full_example_with_plus_sign": "+447400123456",
     "display_name_no_e164_cc": "United Kingdom (GB)",
     "e164_key": "44-GB-0"
@@ -3053,6 +3145,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "United States",
     "example": "2012345678",
     "display_name": "United States (US) [+1]",
+    "mask": "000 000 0000",
     "full_example_with_plus_sign": "+12012345678",
     "display_name_no_e164_cc": "United States (US)",
     "e164_key": "1-US-0"
@@ -3066,6 +3159,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Uruguay",
     "example": "94231234",
     "display_name": "Uruguay (UY) [+598]",
+    "mask": "000 000 00",
     "full_example_with_plus_sign": "+59894231234",
     "display_name_no_e164_cc": "Uruguay (UY)",
     "e164_key": "598-UY-0"
@@ -3079,6 +3173,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Uzbekistan",
     "example": "912345678",
     "display_name": "Uzbekistan (UZ) [+998]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+998912345678",
     "display_name_no_e164_cc": "Uzbekistan (UZ)",
     "e164_key": "998-UZ-0"
@@ -3092,6 +3187,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Vanuatu",
     "example": "5912345",
     "display_name": "Vanuatu (VU) [+678]",
+    "mask": null,
     "full_example_with_plus_sign": "+6785912345",
     "display_name_no_e164_cc": "Vanuatu (VU)",
     "e164_key": "678-VU-0"
@@ -3105,6 +3201,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Vatican City",
     "example": "",
     "display_name": "Vatican City (VA) [+379]",
+    "mask": null,
     "full_example_with_plus_sign": null,
     "display_name_no_e164_cc": "Vatican City (VA)",
     "e164_key": "379-VA-0"
@@ -3118,6 +3215,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Venezuela",
     "example": "4121234567",
     "display_name": "Venezuela (VE) [+58]",
+    "mask": "000 000 0000",
     "full_example_with_plus_sign": "+584121234567",
     "display_name_no_e164_cc": "Venezuela (VE)",
     "e164_key": "58-VE-0"
@@ -3131,6 +3229,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Vietnam",
     "example": "912345678",
     "display_name": "Vietnam (VN) [+84]",
+    "mask": null,
     "full_example_with_plus_sign": "+84912345678",
     "display_name_no_e164_cc": "Vietnam (VN)",
     "e164_key": "84-VN-0"
@@ -3144,6 +3243,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Wallis and Futuna",
     "example": "501234",
     "display_name": "Wallis and Futuna (WF) [+681]",
+    "mask": "000 000",
     "full_example_with_plus_sign": "+681501234",
     "display_name_no_e164_cc": "Wallis and Futuna (WF)",
     "e164_key": "681-WF-0"
@@ -3157,6 +3257,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Western Sahara",
     "example": "",
     "display_name": "Western Sahara (EH) [+212]",
+    "mask": null,
     "full_example_with_plus_sign": null,
     "display_name_no_e164_cc": "Western Sahara (EH)",
     "e164_key": "212-EH-0"
@@ -3170,6 +3271,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Yemen",
     "example": "712345678",
     "display_name": "Yemen (YE) [+967]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+967712345678",
     "display_name_no_e164_cc": "Yemen (YE)",
     "e164_key": "967-YE-0"
@@ -3183,6 +3285,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Zambia",
     "example": "955123456",
     "display_name": "Zambia (ZM) [+260]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+260955123456",
     "display_name_no_e164_cc": "Zambia (ZM)",
     "e164_key": "260-ZM-0"
@@ -3196,6 +3299,7 @@ final List<Map<String, dynamic>> countryCodes = [
     "name": "Zimbabwe",
     "example": "711234567",
     "display_name": "Zimbabwe (ZW) [+263]",
+    "mask": "000 000 000",
     "full_example_with_plus_sign": "+263711234567",
     "display_name_no_e164_cc": "Zimbabwe (ZW)",
     "e164_key": "263-ZW-0"

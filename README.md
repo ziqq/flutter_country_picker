@@ -6,9 +6,9 @@ A flutter package to select a country from a list of countries.
 
 <!-- <img height="600" alt="n1" src="https://raw.githubusercontent.com/Daniel-Ioannou/flutter_country_picker/master/assets/ReadMe%20Screenshot.png"> -->
 
-<a width="375" href="https://github.com/ziqq/flutter_country_picker/#/"><img alt="screenshot" src="https://raw.githubusercontent.com/ziqq/flutter_country_picker/master/.docs/assets/screenshot_1.png"></a>
-
 ## Screenshots
+
+<a width="375" href="https://github.com/ziqq/flutter_country_picker/#/"><img alt="screenshot" src="https://raw.githubusercontent.com/ziqq/flutter_country_picker/master/.docs/assets/screenshot_1.png"></a>
 
 ```sh
   Screenshots must be here

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'country_localizations.dart';
 import 'country_parser.dart';
-import 'helpers/utils.dart';
 
-///The country Model that has all the country
-///information needed from the [country_picker]
+import 'helpers/utils.dart';
+import 'helpers/typesdef.dart';
+
+/// The country Model that has all the country
+/// information needed from the [flutter_country_picker]
 @immutable
 class Country {
   static const Country worldWide = Country(
@@ -49,15 +51,10 @@ class Country {
   final String displayNameNoCountryCode;
   final String e164Key;
 
-  @Deprecated(
-    'The modern term is displayNameNoCountryCode. '
-    'This feature was deprecated after v1.0.6.',
-  )
-  String get displayNameNoE164Cc => displayNameNoCountryCode;
-
   String? getTranslatedName(BuildContext context) {
-    return CountryLocalizations.of(context)
-        ?.countryName(countryCode: countryCode);
+    return CountryLocalizations.of(context)?.countryName(
+      countryCode: countryCode,
+    );
   }
 
   const Country({
@@ -107,7 +104,7 @@ class Country {
     );
   }
 
-  Country.from({required Map<String, dynamic> json})
+  Country.fromJson(JSON json)
       : phoneCode = json['e164_cc'] as String,
         countryCode = json['iso2_cc'] as String,
         e164Sc = json['e164_sc'] as int,
@@ -138,8 +135,8 @@ class Country {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+  JSON toJson() {
+    final JSON data = <String, dynamic>{};
     data['e164_cc'] = phoneCode;
     data['iso2_cc'] = countryCode;
     data['e164_sc'] = e164Sc;
@@ -175,7 +172,7 @@ class Country {
 
   @override
   String toString() =>
-      'Country(countryCode: $countryCode, name: $name, nameLocalized: $nameLocalized, phoneCode: $phoneCode)';
+      'Country(countryCode: $countryCode, name: $name, nameLocalized: $nameLocalized, phoneCode: $phoneCode, fullExampleWithPlusSign: $fullExampleWithPlusSign)';
 
   @override
   bool operator ==(Object other) {

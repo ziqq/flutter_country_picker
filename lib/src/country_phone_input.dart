@@ -11,12 +11,15 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'country_picker_theme_data.dart';
 import 'helpers/constants.dart';
 
+final _kDefaultFilter = {'0': RegExp('[0-9]')};
+
 class CountryPhoneInput extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.autofocus}
   final bool autofocus;
 
   final String country;
   final String countryCode;
+  final String? mask;
 
   final TextStyle? textStyle;
 
@@ -36,6 +39,7 @@ class CountryPhoneInput extends StatefulWidget {
     this.autofocus = true,
     this.country = '🇷🇺 Россия',
     this.countryCode = '7',
+    this.mask,
     this.textStyle,
     this.countryPickerThemeData,
     this.controller,
@@ -50,10 +54,11 @@ class CountryPhoneInput extends StatefulWidget {
 }
 
 class CountryPhoneInputState extends State<CountryPhoneInput> {
+  late String? _mask;
   late String _country;
   late String _countryCode;
 
-  late final TextEditingController _controller;
+  late final TextEditingController _effectiveController;
   late final MaskTextInputFormatter _maskFormatter;
 
   @override
@@ -62,13 +67,21 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
 
     _country = widget.country;
     _countryCode = widget.countryCode;
-    _controller = widget.controller ?? TextEditingController();
+    _mask = widget.mask ?? kDefaultPhoneMask;
+
+    _effectiveController = widget.controller ?? TextEditingController();
 
     _maskFormatter = MaskTextInputFormatter(
-      mask: '### ### ####',
-      filter: {'#': RegExp('[0-9]')},
-      initialText: _controller.text,
+      mask: _mask,
+      filter: _kDefaultFilter,
+      initialText: _effectiveController.text,
     );
+  }
+
+  @override
+  void dispose() {
+    _effectiveController.dispose();
+    super.dispose();
   }
 
   @override
@@ -79,13 +92,16 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
     if (widget.country != oldWidget.country) {
       _country = widget.country;
     }
-    super.didUpdateWidget(oldWidget);
-  }
+    if (widget.mask != oldWidget.mask) {
+      _mask = widget.mask ?? kDefaultPhoneMask;
+      _effectiveController.text = '';
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+      _maskFormatter.updateMask(
+        mask: _mask,
+        filter: _kDefaultFilter,
+      );
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -135,11 +151,11 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
             _customThemeData.basePadding != null &&
             _customThemeData.baseIndent != null
         ? EdgeInsets.symmetric(
-            horizontal: _customThemeData.basePadding!,
+            horizontal: _customThemeData.basePadding! / 2,
             vertical: _customThemeData.baseIndent!,
           )
         : const EdgeInsets.symmetric(
-            horizontal: kDefaultPadding,
+            horizontal: kDefaultPadding / 2,
             vertical: kDefaultIndent,
           );
 
@@ -199,29 +215,34 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
                 ),
               ),
               Flexible(
-                child: TextFormField(
-                  style: _defaultTextStyle,
-                  controller: _controller,
-                  autofocus: widget.autofocus,
-                  inputFormatters: [_maskFormatter],
-                  keyboardType: TextInputType.number,
-                  cursorColor: _defaultTextStyle?.color,
-                  cursorHeight: _defaultTextStyle?.fontSize,
-                  onChanged: (_) => widget.onChanged?.call(
-                    '+ $_countryCode ${_controller.text}',
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: effectiveInputPadding.horizontal / 2.5,
                   ),
-                  decoration: InputDecoration(
-                    hintText: kDefaultPhoneMask,
-                    border: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    focusedErrorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                    errorStyle: const TextStyle(height: 0, fontSize: 0),
-                    hintStyle: _defaultTextStyle?.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: effectiveHintColor,
+                  child: TextFormField(
+                    autofocus: widget.autofocus,
+                    controller: _effectiveController,
+                    inputFormatters: [_maskFormatter],
+                    keyboardType: TextInputType.number,
+                    style: _defaultTextStyle,
+                    cursorColor: _defaultTextStyle?.color,
+                    cursorHeight: _defaultTextStyle?.fontSize,
+                    onChanged: (_) => widget.onChanged?.call(
+                      '+ $_countryCode ${_effectiveController.text}',
+                    ),
+                    decoration: InputDecoration(
+                      hintText: _mask,
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      focusedErrorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                      errorStyle: const TextStyle(height: 0, fontSize: 0),
+                      hintStyle: _defaultTextStyle?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: effectiveHintColor,
+                      ),
                     ),
                   ),
                 ),
@@ -245,9 +266,9 @@ class _CustomDividerPainter extends CustomPainter {
     const pointMode = ui.PointMode.polygon;
     final points = [
       Offset.zero,
-      const Offset(33, 0),
-      const Offset(38, 6),
-      const Offset(44, 0),
+      const Offset(22, 0),
+      const Offset(30, 8),
+      const Offset(38, 0),
       Offset(size.width, 0),
     ];
     final paint = Paint()

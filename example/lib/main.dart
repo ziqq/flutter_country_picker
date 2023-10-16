@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                   horizontal: kDefaultPadding,
                 ),
                 onPressed: () {
-                  log("[DEBUG]: _controller.text: ${_controller.text}");
+                  log("[DEBUG]: PHONE: +$_countryCode${_controller.text.replaceAll(" ", "")}");
                 },
                 child: Text(
                   'Submit',

@@ -6,6 +6,8 @@ A flutter package to select a country from a list of countries.
 
 <!-- <img height="600" alt="n1" src="https://raw.githubusercontent.com/Daniel-Ioannou/flutter_country_picker/master/assets/ReadMe%20Screenshot.png"> -->
 
+<a href="https://github.com/ziqq/flutter_country_picker/#/"><img alt="screenshot" src="https://raw.githubusercontent.com/ziqq/flutter_country_picker/master/.docs/assets/screenshot_1.png"></a>
+
 ## Screenshots
 
 ```sh
@@ -60,14 +62,30 @@ MaterialApp(
 ```
 
 ### Parameters:
+* `sheetType`: Can be used to defines the type of [ModalBottomSheet] can be `material` or `cupertino`, which in turn determines the type of method used for [showModalBottomSheet]. Used packge [modal_bottom_sheet](https://pub.dev/packages/modal_bottom_sheet)
+  ```dart
+  showCountryPicker(
+    context: context,
+    sheetType: SheetType.cupertino,
+  );
+  ```
+
 * `onSelect`: Called when a country is selected. The country picker passes the new value to the callback (required)
+
 * `onClosed`: Called when CountryPicker is dismissed, whether a country is selected or not (optional).
+
 * `showPhoneCode`: Can be used to show phone code before the country name.
+
 * `searchAutofocus` Can be used to initially expand virtual keyboard
+
 * `showSearch` Can be used to show/hide the search bar.
+
 * `showWorldWide` An optional argument for showing "World Wide" option at the beginning of the list
+
 * `favorite` Can be used to show the favorite countries at the top of the list (optional).
+
 * `countryListTheme`: Can be used to customize the country list's bottom sheet and widgets that lie within it. (optional).
+
   ```dart
   showCountryPicker(
     context: context,
@@ -97,6 +115,7 @@ MaterialApp(
     onSelect: (Country country) => print('Select country: ${country.displayName}'),
   );
   ```
+
 * `exclude`: Can be used to exclude(remove) one or more country from the countries list (optional).
   ```dart
   showCountryPicker(
@@ -106,10 +125,11 @@ MaterialApp(
     onSelect: (Country country) => print('Select country: ${country.displayName}'),
   );
   ```
+
 * `countryFilter`: Can be used to filter the countries list (optional).
   - It takes a list of country code(iso2).
   - Can't provide both exclude and countryFilter
 
 
 ## Contributions
-Contributions of any kind are more than welcome! Feel free to fork and improve country_code_picker in any way you want, make a pull request, or open an issue.
+Contributions of any kind are more than welcome! Feel free to fork and improve flutter_country_picker in any way you want, make a pull request, or open an issue.

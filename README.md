@@ -1,27 +1,33 @@
 # flutter_country_picker
 
-<!-- [![pub package](https://img.shields.io/pub/v/country_picker.svg)](https://pub.dev/packages/country_picker) -->
+<!-- [![pub package](https://img.shields.io/pub/v/flutter_country_picker.svg)](https://pub.dev/packages/flutter_country_picker) -->
 
 A flutter package to select a country from a list of countries.
 
 <!-- <img height="600" alt="n1" src="https://raw.githubusercontent.com/Daniel-Ioannou/flutter_country_picker/master/assets/ReadMe%20Screenshot.png"> -->
+
+## Screenshots
+
+```sh
+  Screenshots must be here
+```
 
 ## Getting Started
 
  Add the package to your pubspec.yaml:
 
  ```yaml
- country_picker: last version
+  flutter_country_picker: last version
  ```
 
  In your dart file, import the library:
 
- ```Dart
- import 'package:country_picker/country_picker.dart';
+ ```dart
+  import 'package:flutter_country_picker/flutter_country_picker.dart';
  ```
 
 Show country picker using `showCountryPicker`:
-```Dart
+```dart
 showCountryPicker(
   context: context,
   showPhoneCode: true, // optional. Shows phone code before the country name.
@@ -33,7 +39,7 @@ showCountryPicker(
 
 ### For localization:
 Add the `CountryLocalizations.delegate` in the list of your app delegates.
-```Dart
+```dart
 MaterialApp(
   supportedLocales: [
     const Locale('en'),
@@ -62,10 +68,10 @@ MaterialApp(
 * `showWorldWide` An optional argument for showing "World Wide" option at the beginning of the list
 * `favorite` Can be used to show the favorite countries at the top of the list (optional).
 * `countryListTheme`: Can be used to customize the country list's bottom sheet and widgets that lie within it. (optional).
-  ```Dart
+  ```dart
   showCountryPicker(
     context: context,
-    countryListTheme: CountryListThemeData(
+    countryListTheme: CountryPickerThemeData(
       flagSize: 25,
       backgroundColor: Colors.white,
       textStyle: TextStyle(fontSize: 16, color: Colors.blueGrey),
@@ -92,7 +98,7 @@ MaterialApp(
   );
   ```
 * `exclude`: Can be used to exclude(remove) one or more country from the countries list (optional).
-  ```Dart
+  ```dart
   showCountryPicker(
     context: context,
     // It takes a list of country code(iso2)

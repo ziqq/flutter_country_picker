@@ -38,9 +38,9 @@ showCountryPicker(
 Use country phone input without country picker using `CountryPhoneInput`:
 ```dart
 CountryPhoneInput(
-  mask: _mask, // Optional. To channge
-  country: _country,
-  countryCode: _countryCode,
+  mask: _mask, // Optional.
+  country: _country, // Optional.
+  countryCode: _countryCode, // Optional.
 );
 ```
 
@@ -49,13 +49,13 @@ Use country phone input with country picker using `CountryPhoneInput`:
 ```dart
 CountryPhoneInput(
   mask: _mask, // Optional.
-  country: _country,
-  countryCode: _countryCode,
+  country: _country, // Optional.
+  countryCode: _countryCode, // Optional.
   onTap: () {
     showCountryPicker(
       context: context,
+      exclude: ['KN'],
       favorite: ['RU'],
-      exclude: ['KN', 'MF'],
       showPhoneCode: true,
       sheetType: SheetType.cupertino,
       onSelect: (Country country) {
@@ -64,9 +64,6 @@ CountryPhoneInput(
           _countryCode = country.phoneCode;
           _mask = country.mask;
         });
-      },
-      onClosed: () {
-        log('[DEBUG]: onClosed called');
       },
     );
   },

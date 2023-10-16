@@ -69,7 +69,9 @@ Use `TextEditingController` to get current phone value on any event:
 ```dart
 CupertinoButton.filled(
   onPressed: () {
-    viewModel.phone = "+$_countryCode${_controller.text.replaceAll(" ", "")}";
+    setState(() {
+      _phone = "+$_countryCode${_controller.text.replaceAll(" ", "")}";
+    });
   },
   child: Text(
     'Submit',

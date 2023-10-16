@@ -3,8 +3,11 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'package:country_picker/country_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:flutter_country_picker/flutter_country_picker.dart';
+
+const double kDefaultPadding = 16.0;
+const String kDefaultCountry = '🇷🇺 Россия';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
-      title: 'Demo for country picker package',
+      title: 'COUNTRY PICKER EXAMPLE',
       // themeMode: ThemeMode.dark,
       // darkTheme: ThemeData(
       //   primarySwatch: Colors.blue,
@@ -76,87 +79,114 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String _country = '🇷🇺 Россия';
+  String _countryCode = '7';
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text('Demo for country picker'),
+        middle: Text('COUNTRY PICKER EXAMPLE'),
       ),
       child: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  child: CupertinoButton.filled(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    onPressed: () => showCountryPicker(
-                      context: context,
-                      isCupertinoBottomSheet: true,
-                      // Optional.
-                      // Can be used to exclude(remove) one ore more country from the countries list (optional).
-                      exclude: ['KN', 'MF'],
-                      favorite: ['RU'],
-                      //Optional. Shows phone code before the country name.
-                      showPhoneCode: true,
-                      onSelect: (Country country) {
-                        log('--------> Select country: $country');
-                      },
-                      // Optional.
-                      // Sets the theme for the country list picker.
-                      countryListTheme: CountryListThemeData(),
-                    ),
-                    child: Text(
-                      'Show cupertino country picker',
-                      style: TextStyle(
-                        color: CupertinoDynamicColor.resolve(
-                          CupertinoColors.label,
-                          context,
-                        ),
-                      ),
-                    ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: kDefaultPadding * 2),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPadding,
+                ),
+                child: CupertinoButton.filled(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: kDefaultPadding,
+                  ),
+                  onPressed: () => showCountryPicker(
+                    context: context,
+                    isCupertinoBottomSheet: true,
+                    // Optional.
+                    // Can be used to exclude(remove) one ore more country from the countries list (optional).
+                    exclude: ['KN', 'MF'],
+                    favorite: ['RU'],
+                    //Optional. Shows phone code before the country name.
+                    showPhoneCode: true,
+                    onSelect: (Country country) {
+                      log('[DEBUG]: Selected country $country');
+                    },
+                    // Optional.
+                    // Sets the theme for the country list picker.
+                    countryPickerThemeData: CountryPickerThemeData(),
+                  ),
+                  child: Text(
+                    'Show cupertino country picker',
+                    style: TextStyle(color: CupertinoColors.white),
                   ),
                 ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  child: CupertinoButton.filled(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    onPressed: () => showCountryPicker(
-                      context: context,
-                      // Optional.
-                      // Can be used to exclude(remove) one ore more country from the countries list (optional).
-                      exclude: ['KN', 'MF'],
-                      favorite: ['RU'],
-                      //Optional. Shows phone code before the country name.
-                      showPhoneCode: true,
-                      onSelect: (Country country) {
-                        log('--------> Select country: $country');
-                      },
-                      // Optional.
-                      // Sets the theme for the country list picker.
-                      countryListTheme: CountryListThemeData(),
-                    ),
-                    child: Text(
-                      'Show default country picker',
-                      style: TextStyle(
-                        color: CupertinoDynamicColor.resolve(
-                          CupertinoColors.label,
-                          context,
-                        ),
-                      ),
-                    ),
+              ),
+              const SizedBox(height: kDefaultPadding),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPadding,
+                ),
+                child: CupertinoButton.filled(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: kDefaultPadding,
+                  ),
+                  onPressed: () => showCountryPicker(
+                    context: context,
+                    // Optional.
+                    // Can be used to exclude(remove) one ore more country from the countries list (optional).
+                    exclude: ['KN', 'MF'],
+                    favorite: ['RU'],
+                    //Optional. Shows phone code before the country name.
+                    showPhoneCode: true,
+                    onSelect: (Country country) {
+                      log('[DEBUG]: Selected country $country');
+                    },
+                    // Optional.
+                    // Sets the theme for the country list picker.
+                    countryPickerThemeData: CountryPickerThemeData(),
+                  ),
+                  child: Text(
+                    'Show default country picker',
+                    style: TextStyle(color: CupertinoColors.white),
                   ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: kDefaultPadding * 2),
+              CountryPhoneInput(
+                country: _country,
+                countryCode: _countryCode,
+                onTap: () {
+                  showCountryPicker(
+                    context: context,
+                    favorite: ['RU'],
+                    exclude: ['KN', 'MF'],
+                    showPhoneCode: true,
+                    isCupertinoBottomSheet: true,
+                    onSelect: (Country country) {
+                      log('[DEBUG]: Selected country $country');
+                      setState(() {
+                        _country =
+                            '${country.flagEmoji} ${country.nameLocalized}';
+                        _countryCode = country.phoneCode;
+                      });
+                    },
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),

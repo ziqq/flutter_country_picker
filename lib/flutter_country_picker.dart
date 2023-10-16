@@ -2,16 +2,20 @@ library flutter_country_picker;
 
 import 'package:flutter/material.dart';
 
-import 'src/country.dart';
-import 'src/country_list_bottom_sheet.dart';
-import 'src/country_picker_theme_data.dart';
+import 'src/helpers/enums.dart';
 
-export 'src/country.dart';
+import 'src/country_model.dart';
+import 'src/country_picker_theme_data.dart';
+import 'src/show_country_list_bottom_sheet.dart';
+
+export 'src/country_model.dart';
 export 'src/country_picker_theme_data.dart';
 export 'src/country_localizations.dart';
 export 'src/country_parser.dart';
 export 'src/country_service.dart';
 export 'src/country_phone_input.dart';
+
+export 'src/helpers/enums.dart';
 
 /// Shows a bottom sheet containing a list of countries to select one.
 ///
@@ -56,7 +60,7 @@ void showCountryPicker({
   bool showWorldWide = false,
   bool showSearch = true,
   bool useSafeArea = false,
-  bool isCupertinoBottomSheet = false,
+  SheetType sheetType = SheetType.material,
 }) {
   assert(
     exclude == null || countryFilter == null,
@@ -67,6 +71,7 @@ void showCountryPicker({
     exclude: exclude,
     favorite: favorite,
     countryFilter: countryFilter,
+    countryPickerThemeData: countryPickerThemeData,
     showSearch: showSearch,
     showPhoneCode: showPhoneCode,
     showWorldWide: showWorldWide,
@@ -74,7 +79,6 @@ void showCountryPicker({
     onClosed: onClosed,
     onSelect: onSelect,
     useSafeArea: useSafeArea,
-    isCupertinoBottomSheet: isCupertinoBottomSheet,
-    countryPickerThemeData: countryPickerThemeData,
+    sheetType: sheetType,
   );
 }

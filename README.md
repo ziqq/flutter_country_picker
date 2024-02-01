@@ -1,8 +1,11 @@
-# flutter_country_picker
+# CountryPicker: A flutter package to select a country from a list of countries
 
-<!-- [![pub package](https://img.shields.io/pub/v/flutter_country_picker.svg)](https://pub.dev/packages/flutter_country_picker) -->
-
-A flutter package to select a country from a list of countries.-->
+[![Pub](https://img.shields.io/pub/v/flutter_country_picker.svg)](https://pub.dev/packages/flutter_country_picker)
+[![Actions Status](https://github.com/ziqq/flutter_country_picker/actions/workflows/checkout.yml/badge.svg)](https://github.com/ziqq/flutter_country_picker/actions)
+[![Coverage](https://codecov.io/gh/ziqq/flutter_country_picker/branch/master/graph/badge.svg)](https://codecov.io/gh/ziqq/flutter_country_picker)
+[![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+[![Linter](https://img.shields.io/badge/style-linter-40c4ff.svg)](https://pub.dev/packages/linter)
+[![GitHub stars](https://img.shields.io/github/stars/ziqq/flutter_country_picker?style=social)](https://github.com/ziqq/flutter_country_picker/)
 
 ## Screenshots
 
@@ -26,9 +29,9 @@ Show country picker using `showCountryPicker`:
 ```dart
 showCountryPicker(
   context: context,
-  showPhoneCode: true, // optional. Shows phone code before the country name.
+  showPhoneCode: true, // Optional. Shows phone code before the country name.
   onSelect: (Country country) {
-    print('Select country: ${country.displayName}');
+    debugPrint('Select country: ${country.displayName}');
   },
 );
 ```
@@ -68,15 +71,8 @@ CountryPhoneInput(
 Use `TextEditingController` to get current phone value on any event:
 ```dart
 CupertinoButton.filled(
-  onPressed: () {
-    setState(() {
-      _phone = "+$_countryCode${_controller.text.replaceAll(" ", "")}";
-    });
-  },
-  child: Text(
-    'Submit',
-    style: TextStyle(color: CupertinoColors.white),
-  ),
+  onPressed: () => setState(() => _phone = "+$_countryCode${_controller.text.replaceAll(" ", "")}"),
+  child: Text('Submit', style: TextStyle(color: CupertinoColors.white)),
 );
 ```
 
@@ -132,15 +128,12 @@ MaterialApp(
       flagSize: 25,
       backgroundColor: Colors.white,
       textStyle: TextStyle(fontSize: 16, color: Colors.blueGrey),
-      // Optional. Country list modal height
-      bottomSheetHeight: 500,
-      // Optional. Sets the border radius for the bottomsheet.
-      borderRadius: BorderRadius.only(
+      bottomSheetHeight: 500, // Optional. Country list modal height
+      borderRadius: BorderRadius.only( // Optional. Sets the border radius for the bottomsheet.
         topLeft: Radius.circular(20.0),
         topRight: Radius.circular(20.0),
       ),
-      // Optional. Styles the search field.
-      inputDecoration: InputDecoration(
+      inputDecoration: InputDecoration( // Optional. Styles the search field.
         labelText: 'Search',
         hintText: 'Start typing to search',
         prefixIcon: const Icon(Icons.search),
@@ -159,8 +152,7 @@ MaterialApp(
   ```dart
   showCountryPicker(
     context: context,
-    // It takes a list of country code(iso2)
-    exclude: <String>['KN', 'MF'], .
+    exclude: <String>['KN', 'MF'], // It takes a list of country code(iso2)
     onSelect: (Country country) => print('Select country: ${country.displayName}'),
   );
   ```

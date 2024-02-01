@@ -1,34 +1,61 @@
 name: flutter_country_picker
 description: A flutter package to select a country from a list of countries.
 
-homepage: https://github.com/ziqq
-repository: https://github.com/ziqq/flutter_country_picker
-
 version: 3.1.0
 
+homepage: https://github.com/ziqq/flutter_country_picker
+
+repository: https://github.com/ziqq/flutter_country_picker
+
+issue_tracker: https://github.com/ziqq/flutter_country_picker/issues
+
+funding:
+  - https://www.buymeacoffee.com/ziqq
+
+platforms:
+  android:
+  ios:
+
+#screenshots:
+#  - description: 'Example of using the ws library to connect to a WebSocket server.'
+#    path: example.png
+
 environment:
-  sdk: ">=2.19.0 <=4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=3.0.0"
 
 dependencies:
+  # Flutter SDK
   flutter:
     sdk: flutter
 
-  collection: ^1.17.0
-  cupertino_icons: ^1.0.2
+  # Localization
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+  # Annotations
+  collection: any
+  meta: any
+  path: any
+
+  # UI and Widgets
+  cupertino_icons: any
   grouped_list: ^5.1.2
   modal_bottom_sheet: ^3.0.0-pre
-  mask_text_input_formatter: ^2.5.0
+  mask_text_input_formatter: ^2.8.0
 
 
 dev_dependencies:
+  # Unit & Widget tests for Flutter
   flutter_test:
     sdk: flutter
+  # Integration tests for Flutter
+  integration_test:
+    sdk: flutter
 
-  flutter_lint_rules:
-    git:
-      url: https://github.com/ziqq/flutter_lint_rules.git
-      ref: main
+  # Linting
+  flutter_lints: ^3.0.1
 
 
 flutter:

@@ -1,86 +1,84 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:flutter_country_picker/flutter_country_picker.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-const double kDefaultPadding = 16.0;
+const double kDefaultPadding = 16;
 const String kDefaultCountry = '🇷🇺 Россия';
 
-void main() => runApp(MyApp());
+const List<Locale> supportedLocales = [
+  Locale('en'),
+  Locale('ru'),
+  // Locale('ar'),
+  // Locale('es'),
+  // Locale('de'),
+  // Locale('fr'),
+  // Locale('el'),
+  // Locale('et'),
+  // Locale('nb'),
+  // Locale('nn'),
+  // Locale('pl'),
+  // Locale('pt'),
+  // Locale('ru'),
+  // Locale('hi'),
+  // Locale('ne'),
+  // Locale('uk'),
+  // Locale('hr'),
+  // Locale('tr'),
+  // Locale('lv'),
+  // Locale('lt'),
+  // Locale('ku'),
+  // Locale('nl'),
+  // Locale('it'),
+  // Generic Simplified Chinese 'zh_Hans'
+  // Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
+  // Generic traditional Chinese 'zh_Hant'
+  // Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
+];
+
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    return CupertinoApp(
-      debugShowCheckedModeBanner: false,
-      title: 'COUNTRY PICKER EXAMPLE',
-      // themeMode: ThemeMode.dark,
-      // darkTheme: ThemeData(
-      //   primarySwatch: Colors.blue,
-      //   visualDensity: VisualDensity.adaptivePlatformDensity,
-      // ),
-      // theme: ThemeData(
-      //   primarySwatch: Colors.blue,
-      //   visualDensity: VisualDensity.adaptivePlatformDensity,
-      // ),
-      locale: Locale('ru'),
-      supportedLocales: [
-        const Locale('en'),
-        const Locale('ar'),
-        const Locale('es'),
-        const Locale('de'),
-        const Locale('fr'),
-        const Locale('el'),
-        const Locale('et'),
-        const Locale('nb'),
-        const Locale('nn'),
-        const Locale('pl'),
-        const Locale('pt'),
-        const Locale('ru'),
-        const Locale('hi'),
-        const Locale('ne'),
-        const Locale('uk'),
-        const Locale('hr'),
-        const Locale('tr'),
-        const Locale('lv'),
-        const Locale('lt'),
-        const Locale('ku'),
-        const Locale('nl'),
-        const Locale('it'),
-        const Locale.fromSubtags(
-            languageCode: 'zh',
-            scriptCode: 'Hans'), // Generic Simplified Chinese 'zh_Hans'
-        const Locale.fromSubtags(
-            languageCode: 'zh',
-            scriptCode: 'Hant'), // Generic traditional Chinese 'zh_Hant'
-      ],
-      localizationsDelegates: [
-        CountryLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      onGenerateRoute: (RouteSettings settings) {
-        switch (settings.name) {
-          case '/':
-            return MaterialWithModalsPageRoute(
-              builder: (_) => HomePage(),
-              settings: settings,
-            );
-        }
-        return MaterialWithModalsPageRoute(
-          builder: (context) => HomePage(),
-        );
-      },
-    );
-  }
+  Widget build(BuildContext context) => CupertinoApp(
+        debugShowCheckedModeBanner: false,
+        title: 'COUNTRY PICKER EXAMPLE',
+        // themeMode: ThemeMode.dark,
+        // darkTheme: ThemeData(
+        //   primarySwatch: Colors.blue,
+        //   visualDensity: VisualDensity.adaptivePlatformDensity,
+        // ),
+        // theme: ThemeData(
+        //   primarySwatch: Colors.blue,
+        //   visualDensity: VisualDensity.adaptivePlatformDensity,
+        // ),
+        locale: const Locale('ru'),
+        supportedLocales: supportedLocales,
+        localizationsDelegates: const [
+          CountryLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case '/':
+              return MaterialWithModalsPageRoute(
+                builder: (_) => const HomePage(),
+                settings: settings,
+              );
+          }
+          return MaterialWithModalsPageRoute(
+            builder: (context) => const HomePage(),
+          );
+        },
+      );
 }
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -101,7 +99,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
+      navigationBar: const CupertinoNavigationBar(
         middle: Text('COUNTRY PICKER EXAMPLE'),
       ),
       child: SafeArea(
@@ -123,8 +121,9 @@ class _HomePageState extends State<HomePage> {
                   exclude: ['KN', 'MF'],
                   showPhoneCode: true,
                   sheetType: SheetType.cupertino,
-                  onSelect: (Country country) {
-                    log('[DEBUG]: Selected country $country');
+                  supportedLocales: supportedLocales,
+                  onSelect: (country) {
+                    debugPrint('[DEBUG]: Selected country $country');
                     setState(() {
                       _country =
                           '${country.flagEmoji} ${country.nameLocalized}';
@@ -133,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                   onClosed: () {
-                    log('[DEBUG]: onClosed called');
+                    debugPrint('[DEBUG]: onClosed called');
                   },
                 );
               },
@@ -146,13 +145,15 @@ class _HomePageState extends State<HomePage> {
               ),
               child: CupertinoButton(
                 color: effectiveButtonColor,
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: kDefaultPadding,
                 ),
                 onPressed: () {
-                  log("[DEBUG]: PHONE: +$_countryCode${_controller.text.replaceAll(" ", "")}");
+                  debugPrint(
+                    "[DEBUG]: PHONE: +$_countryCode${_controller.text.replaceAll(" ", "")}",
+                  );
                 },
-                child: Text(
+                child: const Text(
                   'Submit',
                   style: TextStyle(color: CupertinoColors.white),
                 ),
@@ -166,7 +167,7 @@ class _HomePageState extends State<HomePage> {
               ),
               child: CupertinoButton(
                 color: effectiveButtonColor,
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: kDefaultPadding,
                 ),
                 onPressed: () => showCountryPicker(
@@ -178,14 +179,14 @@ class _HomePageState extends State<HomePage> {
                   favorite: ['RU'],
                   //Optional. Shows phone code before the country name.
                   showPhoneCode: true,
-                  onSelect: (Country country) {
-                    log('[DEBUG]: Selected country $country');
+                  onSelect: (country) {
+                    debugPrint('[DEBUG]: Selected country $country');
                   },
                   // Optional.
                   // Sets the theme for the country list picker.
-                  countryPickerThemeData: CountryPickerThemeData(),
+                  countryPickerThemeData: const CountryPickerThemeData(),
                 ),
-                child: Text(
+                child: const Text(
                   'Show cupertino picker',
                   style: TextStyle(color: CupertinoColors.white),
                 ),
@@ -199,7 +200,7 @@ class _HomePageState extends State<HomePage> {
               ),
               child: CupertinoButton(
                 color: effectiveButtonColor,
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: kDefaultPadding,
                 ),
                 onPressed: () => showCountryPicker(
@@ -210,14 +211,14 @@ class _HomePageState extends State<HomePage> {
                   favorite: ['RU'],
                   //Optional. Shows phone code before the country name.
                   showPhoneCode: true,
-                  onSelect: (Country country) {
-                    log('[DEBUG]: Selected country $country');
+                  onSelect: (country) {
+                    debugPrint('[DEBUG]: Selected country $country');
                   },
                   // Optional.
                   // Sets the theme for the country list picker.
-                  countryPickerThemeData: CountryPickerThemeData(),
+                  countryPickerThemeData: const CountryPickerThemeData(),
                 ),
-                child: Text(
+                child: const Text(
                   'Show material picker',
                   style: TextStyle(color: CupertinoColors.white),
                 ),

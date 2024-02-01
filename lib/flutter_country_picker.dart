@@ -1,20 +1,17 @@
 library flutter_country_picker;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_country_picker/src/country_model.dart';
+import 'package:flutter_country_picker/src/country_picker_theme_data.dart';
+import 'package:flutter_country_picker/src/helpers/enums.dart';
+import 'package:flutter_country_picker/src/show_country_list_bottom_sheet.dart';
 
-import 'src/helpers/enums.dart';
-
-import 'src/country_model.dart';
-import 'src/country_picker_theme_data.dart';
-import 'src/show_country_list_bottom_sheet.dart';
-
-export 'src/country_model.dart';
-export 'src/country_picker_theme_data.dart';
 export 'src/country_localizations.dart';
+export 'src/country_model.dart';
 export 'src/country_parser.dart';
-export 'src/country_service.dart';
 export 'src/country_phone_input.dart';
-
+export 'src/country_picker_theme_data.dart';
+export 'src/country_service.dart';
 export 'src/helpers/enums.dart';
 
 /// Shows a bottom sheet containing a list of countries to select one.
@@ -50,6 +47,7 @@ export 'src/helpers/enums.dart';
 void showCountryPicker({
   required BuildContext context,
   required ValueChanged<Country> onSelect,
+  List<Locale>? supportedLocales,
   VoidCallback? onClosed,
   List<String>? favorite,
   List<String>? exclude,
@@ -66,6 +64,8 @@ void showCountryPicker({
     exclude == null || countryFilter == null,
     'Cannot provide both exclude and countryFilter',
   );
+  debugPrint('[DEBUG]: supportedLocales: $supportedLocales');
+
   showCountryListBottomSheet(
     context: context,
     exclude: exclude,

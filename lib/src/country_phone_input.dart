@@ -3,17 +3,30 @@
 import 'dart:io';
 import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_country_picker/src/country_picker_theme_data.dart';
+import 'package:flutter_country_picker/src/helpers/constants.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-
-import 'country_picker_theme_data.dart';
-import 'helpers/constants.dart';
 
 final _kDefaultFilter = {'0': RegExp('[0-9]')};
 
 class CountryPhoneInput extends StatefulWidget {
+  const CountryPhoneInput({
+    this.autofocus = true,
+    this.country = '🇷🇺 Россия',
+    this.countryCode = '7',
+    this.mask,
+    this.textStyle,
+    this.countryPickerThemeData,
+    this.controller,
+    this.onTap,
+    this.onLongPress,
+    this.onChanged,
+    super.key,
+  });
+
   /// {@macro flutter.widgets.editableText.autofocus}
   final bool autofocus;
 
@@ -35,31 +48,17 @@ class CountryPhoneInput extends StatefulWidget {
   final VoidCallback? onLongPress;
   final void Function(String)? onChanged;
 
-  const CountryPhoneInput({
-    this.autofocus = true,
-    this.country = '🇷🇺 Россия',
-    this.countryCode = '7',
-    this.mask,
-    this.textStyle,
-    this.countryPickerThemeData,
-    this.controller,
-    this.onTap,
-    this.onLongPress,
-    this.onChanged,
-    Key? key,
-  }) : super(key: key);
-
   @override
   State<CountryPhoneInput> createState() => CountryPhoneInputState();
 }
 
 class CountryPhoneInputState extends State<CountryPhoneInput> {
-  late String? _mask;
-  late String _country;
-  late String _countryCode;
-
-  late final TextEditingController _effectiveController;
+  late final TextEditingController _phoneController;
   late final MaskTextInputFormatter _maskFormatter;
+
+  late String _countryCode;
+  late String _country;
+  late String? _mask;
 
   @override
   void initState() {
@@ -69,18 +68,18 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
     _countryCode = widget.countryCode;
     _mask = widget.mask ?? kDefaultPhoneMask;
 
-    _effectiveController = widget.controller ?? TextEditingController();
+    _phoneController = widget.controller ?? TextEditingController();
 
     _maskFormatter = MaskTextInputFormatter(
       mask: _mask,
       filter: _kDefaultFilter,
-      initialText: _effectiveController.text,
+      initialText: _phoneController.text,
     );
   }
 
   @override
   void dispose() {
-    _effectiveController.dispose();
+    _phoneController.dispose();
     super.dispose();
   }
 
@@ -94,7 +93,7 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
     }
     if (widget.mask != oldWidget.mask) {
       _mask = widget.mask ?? kDefaultPhoneMask;
-      _effectiveController.text = '';
+      _phoneController.text = '';
 
       _maskFormatter.updateMask(
         mask: _mask,
@@ -106,12 +105,12 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
 
   @override
   Widget build(BuildContext context) {
-    final CountryPickerThemeData? _customThemeData =
+    final CountryPickerThemeData? customThemeData =
         widget.countryPickerThemeData;
 
-    final TextStyle? _defaultTextStyle =
+    final TextStyle? defaultTextStyle =
         (widget.textStyle ?? Theme.of(context).textTheme.bodyLarge)?.copyWith(
-            fontSize: 20.0,
+            fontSize: 20,
             fontWeight: FontWeight.w600,
             letterSpacing: Platform.isIOS ? -0.3 : 0,
             color: CupertinoDynamicColor.resolve(
@@ -120,25 +119,33 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
             ),
             fontFamily: Platform.isIOS ? 'SF-Pro-Rounded' : null);
 
-    final Color effectiveBackgroundColor = _customThemeData?.backgroundColor ??
+    final Color effectiveBackgroundColor = customThemeData?.backgroundColor ??
         CupertinoDynamicColor.resolve(
-            CupertinoColors.systemBackground, context);
+          CupertinoColors.systemBackground,
+          context,
+        );
 
-    final Color effectiveDividerColor = _customThemeData?.dividerColor ??
-        CupertinoDynamicColor.resolve(CupertinoColors.opaqueSeparator, context);
+    final Color effectiveDividerColor = customThemeData?.dividerColor ??
+        CupertinoDynamicColor.resolve(
+          CupertinoColors.opaqueSeparator,
+          context,
+        );
 
-    final Color effectiveHintColor = _customThemeData
-            ?.inputDecoration?.hintStyle?.color ??
-        CupertinoDynamicColor.resolve(CupertinoColors.placeholderText, context);
+    final Color effectiveHintColor =
+        customThemeData?.inputDecoration?.hintStyle?.color ??
+            CupertinoDynamicColor.resolve(
+              CupertinoColors.placeholderText,
+              context,
+            );
 
-    final effectiveCountryNamePadding = _customThemeData != null &&
-            _customThemeData.basePadding != null &&
-            _customThemeData.baseIndent != null
+    final effectiveCountryNamePadding = customThemeData != null &&
+            customThemeData.basePadding != null &&
+            customThemeData.baseIndent != null
         ? EdgeInsets.only(
-            top: _customThemeData.baseIndent!,
-            bottom: _customThemeData.baseIndent!,
-            left: _customThemeData.basePadding!,
-            right: _customThemeData.basePadding! / 2,
+            top: customThemeData.baseIndent!,
+            bottom: customThemeData.baseIndent!,
+            left: customThemeData.basePadding!,
+            right: customThemeData.basePadding! / 2,
           )
         : const EdgeInsets.only(
             top: kDefaultIndent,
@@ -147,12 +154,12 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
             right: kDefaultPadding / 2,
           );
 
-    final effectiveInputPadding = _customThemeData != null &&
-            _customThemeData.basePadding != null &&
-            _customThemeData.baseIndent != null
+    final effectiveInputPadding = customThemeData != null &&
+            customThemeData.basePadding != null &&
+            customThemeData.baseIndent != null
         ? EdgeInsets.symmetric(
-            horizontal: _customThemeData.basePadding! / 2,
-            vertical: _customThemeData.baseIndent!,
+            horizontal: customThemeData.basePadding! / 2,
+            vertical: customThemeData.baseIndent!,
           )
         : const EdgeInsets.symmetric(
             horizontal: kDefaultPadding / 2,
@@ -178,7 +185,7 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
               padding: effectiveCountryNamePadding,
               child: Text(
                 _country,
-                style: _defaultTextStyle?.copyWith(
+                style: defaultTextStyle?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -190,7 +197,7 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
             height: 1,
             child: CustomPaint(
               size: Size(MediaQuery.of(context).size.width, 1),
-              painter: _CustomDividerPainter(
+              painter: _CountryPhoneInput$DividerPainter(
                 color: effectiveDividerColor,
               ),
             ),
@@ -203,7 +210,7 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
                 padding: effectiveInputPadding,
                 child: Text(
                   '+ $_countryCode',
-                  style: _defaultTextStyle,
+                  style: defaultTextStyle,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -221,14 +228,14 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
                   ),
                   child: TextFormField(
                     autofocus: widget.autofocus,
-                    controller: _effectiveController,
+                    controller: _phoneController,
                     inputFormatters: [_maskFormatter],
                     keyboardType: TextInputType.number,
-                    style: _defaultTextStyle,
-                    cursorColor: _defaultTextStyle?.color,
-                    cursorHeight: _defaultTextStyle?.fontSize,
+                    style: defaultTextStyle,
+                    cursorColor: defaultTextStyle?.color,
+                    cursorHeight: defaultTextStyle?.fontSize,
                     onChanged: (_) => widget.onChanged?.call(
-                      '+ $_countryCode ${_effectiveController.text}',
+                      '+ $_countryCode ${_phoneController.text}',
                     ),
                     decoration: InputDecoration(
                       hintText: _mask,
@@ -239,7 +246,7 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
                       focusedErrorBorder: InputBorder.none,
                       disabledBorder: InputBorder.none,
                       errorStyle: const TextStyle(height: 0, fontSize: 0),
-                      hintStyle: _defaultTextStyle?.copyWith(
+                      hintStyle: defaultTextStyle?.copyWith(
                         fontWeight: FontWeight.w500,
                         color: effectiveHintColor,
                       ),
@@ -256,10 +263,10 @@ class CountryPhoneInputState extends State<CountryPhoneInput> {
   }
 }
 
-class _CustomDividerPainter extends CustomPainter {
-  final Color? color;
+class _CountryPhoneInput$DividerPainter extends CustomPainter {
+  _CountryPhoneInput$DividerPainter({this.color});
 
-  _CustomDividerPainter({this.color});
+  final Color? color;
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -1,65 +1,58 @@
-// ignore_for_file: avoid_catches_without_on_clauses
-
 import 'package:flutter/material.dart';
-
-import '../flutter_country_picker.dart';
-
-import 'helpers/typesdef.dart';
-import 'res/country_codes.dart';
-import 'res/strings/ar.dart';
-import 'res/strings/cn.dart';
-import 'res/strings/de.dart';
-import 'res/strings/en.dart';
-import 'res/strings/es.dart';
-import 'res/strings/et.dart';
-import 'res/strings/fr.dart';
-import 'res/strings/gr.dart';
-import 'res/strings/hr.dart';
-import 'res/strings/it.dart';
-import 'res/strings/ku.dart';
-import 'res/strings/lt.dart';
-import 'res/strings/lv.dart';
-import 'res/strings/nb.dart';
-import 'res/strings/nl.dart';
-import 'res/strings/nn.dart';
-import 'res/strings/np.dart';
-import 'res/strings/pl.dart';
-import 'res/strings/pt.dart';
-import 'res/strings/ru.dart';
-import 'res/strings/tr.dart';
-import 'res/strings/tw.dart';
-import 'res/strings/uk.dart';
+import 'package:flutter_country_picker/flutter_country_picker.dart';
+import 'package:flutter_country_picker/src/res/country_codes.dart';
+import 'package:flutter_country_picker/src/res/strings/ar.dart';
+import 'package:flutter_country_picker/src/res/strings/cn.dart';
+import 'package:flutter_country_picker/src/res/strings/de.dart';
+import 'package:flutter_country_picker/src/res/strings/en.dart';
+import 'package:flutter_country_picker/src/res/strings/es.dart';
+import 'package:flutter_country_picker/src/res/strings/et.dart';
+import 'package:flutter_country_picker/src/res/strings/fr.dart';
+import 'package:flutter_country_picker/src/res/strings/gr.dart';
+import 'package:flutter_country_picker/src/res/strings/hr.dart';
+import 'package:flutter_country_picker/src/res/strings/it.dart';
+import 'package:flutter_country_picker/src/res/strings/ku.dart';
+import 'package:flutter_country_picker/src/res/strings/lt.dart';
+import 'package:flutter_country_picker/src/res/strings/lv.dart';
+import 'package:flutter_country_picker/src/res/strings/nb.dart';
+import 'package:flutter_country_picker/src/res/strings/nl.dart';
+import 'package:flutter_country_picker/src/res/strings/nn.dart';
+import 'package:flutter_country_picker/src/res/strings/np.dart';
+import 'package:flutter_country_picker/src/res/strings/pl.dart';
+import 'package:flutter_country_picker/src/res/strings/pt.dart';
+import 'package:flutter_country_picker/src/res/strings/ru.dart';
+import 'package:flutter_country_picker/src/res/strings/tr.dart';
+import 'package:flutter_country_picker/src/res/strings/tw.dart';
+import 'package:flutter_country_picker/src/res/strings/uk.dart';
 
 /// Used to parse simple string representations of countries, commonly used in
 /// databases and other forms of storage, to a Country object.
 class CountryParser {
+  const CountryParser._();
+
   /// Returns a single country if [country] matches a country code or name.
   ///
   /// Throws an [ArgumentError] if no matching element is found.
-  static Country parse(String country) {
-    return tryParseCountryCode(country) ?? parseCountryName(country);
-  }
+  static Country parse(String country) =>
+      tryParseCountryCode(country) ?? parseCountryName(country);
 
   /// Returns a single country if [country] matches a country code or name.
   ///
   /// returns null if no matching element is found.
-  static Country? tryParse(String country) {
-    return tryParseCountryCode(country) ?? tryParseCountryName(country);
-  }
+  static Country? tryParse(String country) =>
+      tryParseCountryCode(country) ?? tryParseCountryName(country);
 
   /// Returns a single country if it matches the given [countryCode] (iso2_cc).
   ///
   /// Throws a [StateError] if no matching element is found.
-  static Country parseCountryCode(String countryCode) {
-    return _getFromCode(countryCode.toUpperCase());
-  }
+  static Country parseCountryCode(String countryCode) =>
+      _getFromCode(countryCode.toUpperCase());
 
   /// Returns a single country if it matches the given [phoneCode] (e164_cc).
   ///
   /// Throws a [StateError] if no matching element is found.
-  static Country parsePhoneCode(String phoneCode) {
-    return _getFromPhoneCode(phoneCode);
-  }
+  static Country parsePhoneCode(String phoneCode) =>
+      _getFromPhoneCode(phoneCode);
 
   /// Returns a single country that matches the given [countryCode] (iso2_cc).
   ///
@@ -67,7 +60,9 @@ class CountryParser {
   static Country? tryParseCountryCode(String countryCode) {
     try {
       return parseCountryCode(countryCode);
-    } catch (_) {
+    } on Object catch (error, stackTrace) {
+      Error.safeToString(error);
+      stackTrace.toString();
       return null;
     }
   }
@@ -78,7 +73,9 @@ class CountryParser {
   static Country? tryParsePhoneCode(String phoneCode) {
     try {
       return parsePhoneCode(phoneCode);
-    } catch (_) {
+    } on Object catch (error, stackTrace) {
+      Error.safeToString(error);
+      stackTrace.toString();
       return null;
     }
   }
@@ -122,28 +119,26 @@ class CountryParser {
   }) {
     try {
       return parseCountryName(countryName, context: context, locales: locales);
-    } catch (_) {
+    } on Object catch (error, stackTrace) {
+      Error.safeToString(error);
+      stackTrace.toString();
       return null;
     }
   }
 
   /// Returns a country that matches the [countryCode] (e164_cc).
-  static Country _getFromPhoneCode(String phoneCode) {
-    return Country.fromJson(
-      countryCodes.singleWhere(
-        (JSON j) => j['e164_cc'] == phoneCode,
-      ),
-    );
-  }
+  static Country _getFromPhoneCode(String phoneCode) => Country.fromJson(
+        countryCodes.singleWhere(
+          (j) => j['e164_cc'] == phoneCode,
+        ),
+      );
 
   /// Returns a country that matches the [countryCode] (iso2_cc).
-  static Country _getFromCode(String countryCode) {
-    return Country.fromJson(
-      countryCodes.singleWhere(
-        (JSON j) => j['iso2_cc'] == countryCode,
-      ),
-    );
-  }
+  static Country _getFromCode(String countryCode) => Country.fromJson(
+        countryCodes.singleWhere(
+          (j) => j['iso2_cc'] == countryCode,
+        ),
+      );
 
   /// Returns a country code that matches a country with the given [name] for
   /// any language, or the ones given by [locales]. If no locale list is given,
@@ -271,31 +266,30 @@ class CountryParser {
   /// list.
   static List<Locale> _supportedLanguages({
     List<Locale> exclude = const <Locale>[],
-  }) {
-    return <Locale>[
-      const Locale('en'),
-      const Locale('ar'),
-      const Locale('ku'),
-      const Locale('es'),
-      const Locale('el'),
-      const Locale('et'),
-      const Locale('fr'),
-      const Locale('nb'),
-      const Locale('nn'),
-      const Locale('pl'),
-      const Locale('pt'),
-      const Locale('ru'),
-      const Locale('hi'),
-      const Locale('ne'),
-      const Locale('uk'),
-      const Locale('tr'),
-      const Locale('hr'),
-      const Locale('de'),
-      const Locale('lv'),
-      const Locale('lv'),
-      const Locale('nl'),
-      const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
-      const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
-    ]..removeWhere((Locale l) => exclude.contains(l));
-  }
+  }) =>
+      <Locale>[
+        const Locale('en'),
+        const Locale('ar'),
+        const Locale('ku'),
+        const Locale('es'),
+        const Locale('el'),
+        const Locale('et'),
+        const Locale('fr'),
+        const Locale('nb'),
+        const Locale('nn'),
+        const Locale('pl'),
+        const Locale('pt'),
+        const Locale('ru'),
+        const Locale('hi'),
+        const Locale('ne'),
+        const Locale('uk'),
+        const Locale('tr'),
+        const Locale('hr'),
+        const Locale('de'),
+        const Locale('lv'),
+        const Locale('lv'),
+        const Locale('nl'),
+        const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
+        const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
+      ]..removeWhere((locale) => exclude.contains(locale));
 }

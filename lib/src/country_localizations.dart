@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
-
-import 'res/strings/ar.dart';
-import 'res/strings/cn.dart';
-import 'res/strings/de.dart';
-import 'res/strings/en.dart';
-import 'res/strings/es.dart';
-import 'res/strings/et.dart';
-import 'res/strings/fr.dart';
-import 'res/strings/gr.dart';
-import 'res/strings/hr.dart';
-import 'res/strings/it.dart';
-import 'res/strings/ku.dart';
-import 'res/strings/lt.dart';
-import 'res/strings/lv.dart';
-import 'res/strings/nb.dart';
-import 'res/strings/nl.dart';
-import 'res/strings/nn.dart';
-import 'res/strings/np.dart';
-import 'res/strings/pl.dart';
-import 'res/strings/pt.dart';
-import 'res/strings/ru.dart';
-import 'res/strings/tr.dart';
-import 'res/strings/tw.dart';
-import 'res/strings/uk.dart';
+import 'package:flutter_country_picker/src/res/strings/ar.dart';
+import 'package:flutter_country_picker/src/res/strings/cn.dart';
+import 'package:flutter_country_picker/src/res/strings/de.dart';
+import 'package:flutter_country_picker/src/res/strings/en.dart';
+import 'package:flutter_country_picker/src/res/strings/es.dart';
+import 'package:flutter_country_picker/src/res/strings/et.dart';
+import 'package:flutter_country_picker/src/res/strings/fr.dart';
+import 'package:flutter_country_picker/src/res/strings/gr.dart';
+import 'package:flutter_country_picker/src/res/strings/hr.dart';
+import 'package:flutter_country_picker/src/res/strings/it.dart';
+import 'package:flutter_country_picker/src/res/strings/ku.dart';
+import 'package:flutter_country_picker/src/res/strings/lt.dart';
+import 'package:flutter_country_picker/src/res/strings/lv.dart';
+import 'package:flutter_country_picker/src/res/strings/nb.dart';
+import 'package:flutter_country_picker/src/res/strings/nl.dart';
+import 'package:flutter_country_picker/src/res/strings/nn.dart';
+import 'package:flutter_country_picker/src/res/strings/np.dart';
+import 'package:flutter_country_picker/src/res/strings/pl.dart';
+import 'package:flutter_country_picker/src/res/strings/pt.dart';
+import 'package:flutter_country_picker/src/res/strings/ru.dart';
+import 'package:flutter_country_picker/src/res/strings/tr.dart';
+import 'package:flutter_country_picker/src/res/strings/tw.dart';
+import 'package:flutter_country_picker/src/res/strings/uk.dart';
 
 class CountryLocalizations {
-  final Locale locale;
-
   CountryLocalizations(this.locale);
+
+  final Locale locale;
 
   /// The `CountryLocalizations` from the closest [Localizations] instance
   /// that encloses the given context.
@@ -41,12 +40,8 @@ class CountryLocalizations {
   /// ```dart
   /// CountryLocalizations.of(context).countryName(countryCode: country.countryCode),
   /// ```
-  static CountryLocalizations? of(BuildContext context) {
-    return Localizations.of<CountryLocalizations>(
-      context,
-      CountryLocalizations,
-    );
-  }
+  static CountryLocalizations? of(BuildContext context) =>
+      Localizations.of<CountryLocalizations>(context, CountryLocalizations);
 
   /// A [LocalizationsDelegate] that uses [_CountryLocalizationsDelegate.load]
   /// to create an instance of this class.
@@ -117,33 +112,31 @@ class _CountryLocalizationsDelegate
   const _CountryLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) {
-    return [
-      'en',
-      'ar',
-      'ku',
-      'zh',
-      'el',
-      'es',
-      'et',
-      'pl',
-      'pt',
-      'nb',
-      'nn',
-      'ru',
-      'uk',
-      'hi',
-      'ne',
-      'tr',
-      'hr',
-      'fr',
-      'de',
-      'lt',
-      'lv',
-      'nl',
-      'it',
-    ].contains(locale.languageCode);
-  }
+  bool isSupported(Locale locale) => [
+        'en',
+        'ar',
+        'ku',
+        'zh',
+        'el',
+        'es',
+        'et',
+        'pl',
+        'pt',
+        'nb',
+        'nn',
+        'ru',
+        'uk',
+        'hi',
+        'ne',
+        'tr',
+        'hr',
+        'fr',
+        'de',
+        'lt',
+        'lv',
+        'nl',
+        'it',
+      ].contains(locale.languageCode);
 
   @override
   Future<CountryLocalizations> load(Locale locale) {

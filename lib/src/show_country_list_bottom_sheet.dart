@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_country_picker/src/country_list_view.dart';
+import 'package:flutter_country_picker/src/country_model.dart';
+import 'package:flutter_country_picker/src/country_picker_theme_data.dart';
+import 'package:flutter_country_picker/src/helpers/enums.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-
-import 'country_model.dart';
-import 'country_list_view.dart';
-import 'country_picker_theme_data.dart';
-
-import 'helpers/enums.dart';
 
 void showCountryListBottomSheet({
   required BuildContext context,
@@ -24,7 +22,7 @@ void showCountryListBottomSheet({
   SheetType sheetType = SheetType.material,
 }) {
   if (sheetType == SheetType.cupertino) {
-    showCupertinoModalBottomSheet(
+    showCupertinoModalBottomSheet<void>(
       expand: true,
       context: context,
       barrierColor: kCupertinoModalBarrierColor,
@@ -44,7 +42,7 @@ void showCountryListBottomSheet({
       if (onClosed != null) onClosed();
     });
   } else {
-    showModalBottomSheet(
+    showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       useSafeArea: useSafeArea,
@@ -68,7 +66,6 @@ void showCountryListBottomSheet({
   }
 }
 
-// ignore: avoid-returning-widgets
 Widget _builder(
   BuildContext context,
   ValueChanged<Country> onSelect,
@@ -96,8 +93,8 @@ Widget _builder(
   final BorderRadius effectiveBorderRadius =
       countryPickerThemeData?.borderRadius ??
           const BorderRadius.only(
-            topLeft: Radius.circular(10.0),
-            topRight: Radius.circular(10.0),
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
           );
 
   return Container(

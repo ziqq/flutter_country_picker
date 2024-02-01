@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
 
 class CountryPickerThemeData {
+  const CountryPickerThemeData({
+    this.backgroundColor,
+    this.dividerColor,
+    this.stickyHeaderBackgroundColor,
+    this.textStyle,
+    this.searchTextStyle,
+    this.flagSize,
+    this.inputDecoration,
+    this.borderRadius,
+    this.bottomSheetHeight,
+    this.basePadding,
+    this.baseIndent,
+    this.padding,
+    this.margin,
+  });
+
   /// The country bottom sheet's background color.
   ///
   /// If null, [backgroundColor] defaults to [BottomSheetThemeData.backgroundColor].
@@ -59,20 +75,4 @@ class CountryPickerThemeData {
 
   /// the margin of the bottom sheet
   final EdgeInsets? margin;
-
-  const CountryPickerThemeData({
-    this.backgroundColor,
-    this.dividerColor,
-    this.stickyHeaderBackgroundColor,
-    this.textStyle,
-    this.searchTextStyle,
-    this.flagSize,
-    this.inputDecoration,
-    this.borderRadius,
-    this.bottomSheetHeight,
-    this.basePadding,
-    this.baseIndent,
-    this.padding,
-    this.margin,
-  });
 }

@@ -1,16 +1,31 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_country_picker/src/country_localizations.dart';
+import 'package:flutter_country_picker/src/country_model.dart';
+import 'package:flutter_country_picker/src/country_picker_theme_data.dart';
+import 'package:flutter_country_picker/src/country_service.dart';
+import 'package:flutter_country_picker/src/helpers/constants.dart';
+import 'package:flutter_country_picker/src/helpers/utils.dart';
 import 'package:grouped_list/grouped_list.dart';
 
-import 'country_model.dart';
-import 'country_service.dart';
-import 'country_localizations.dart';
-import 'country_picker_theme_data.dart';
-
-import 'helpers/utils.dart';
-import 'helpers/constants.dart';
-
 class CountryListView extends StatefulWidget {
+  const CountryListView({
+    required this.onSelect,
+    super.key,
+    this.exclude,
+    this.favorite,
+    this.countryFilter,
+    this.countryPickerThemeData,
+    this.padding = kDefaultPadding,
+    this.showSearch = true,
+    this.showPhoneCode = false,
+    this.showWorldWide = false,
+    this.searchAutofocus = false,
+  }) : assert(
+          exclude == null || countryFilter == null,
+          'Cannot provide both exclude and countryFilter',
+        );
+
   /// An optional argument for hiding the search bar
   final bool showSearch;
 
@@ -48,24 +63,6 @@ class CountryListView extends StatefulWidget {
   /// An optional argument for customizing the
   /// country list bottom sheet.
   final CountryPickerThemeData? countryPickerThemeData;
-
-  const CountryListView({
-    Key? key,
-    required this.onSelect,
-    this.exclude,
-    this.favorite,
-    this.countryFilter,
-    this.countryPickerThemeData,
-    this.padding = kDefaultPadding,
-    this.showSearch = true,
-    this.showPhoneCode = false,
-    this.showWorldWide = false,
-    this.searchAutofocus = false,
-  })  : assert(
-          exclude == null || countryFilter == null,
-          'Cannot provide both exclude and countryFilter',
-        ),
-        super(key: key);
 
   @override
   State<CountryListView> createState() => _CountryListViewState();
@@ -137,21 +134,21 @@ class _CountryListViewState extends State<CountryListView> {
     final String searchPlaceholder =
         t?.countryName(countryCode: 'search') ?? 'Поиск';
 
-    final CountryPickerThemeData? _customThemeData =
+    final CountryPickerThemeData? customThemeData =
         widget.countryPickerThemeData;
 
     final double effectiveIndent =
-        _customThemeData?.baseIndent ?? kDefaultIndent;
+        customThemeData?.baseIndent ?? kDefaultIndent;
 
     final double effectivePadding =
-        _customThemeData?.basePadding ?? kDefaultPadding;
+        customThemeData?.basePadding ?? kDefaultPadding;
 
     final Color effectiveStickyHeaderBackgroundColor =
-        _customThemeData?.stickyHeaderBackgroundColor ??
+        customThemeData?.stickyHeaderBackgroundColor ??
             CupertinoDynamicColor.resolve(
                 CupertinoColors.secondarySystemBackground, context);
 
-    final Color effectiveDividerColor = _customThemeData?.dividerColor ??
+    final Color effectiveDividerColor = customThemeData?.dividerColor ??
         CupertinoDynamicColor.resolve(CupertinoColors.opaqueSeparator, context);
 
     return GestureDetector(
@@ -165,9 +162,9 @@ class _CountryListViewState extends State<CountryListView> {
       child: ClipRRect(
         borderRadius: BorderRadius.only(
           topLeft:
-              _customThemeData?.borderRadius?.topLeft ?? kDefaultBorderRadius,
+              customThemeData?.borderRadius?.topLeft ?? kDefaultBorderRadius,
           topRight:
-              _customThemeData?.borderRadius?.topRight ?? kDefaultBorderRadius,
+              customThemeData?.borderRadius?.topRight ?? kDefaultBorderRadius,
         ),
         child: Column(
           children: [
@@ -218,10 +215,10 @@ class _CountryListViewState extends State<CountryListView> {
                 stickyHeaderBackgroundColor:
                     effectiveStickyHeaderBackgroundColor,
                 elements: _filteredList,
-                groupBy: (Country e) => e
+                groupBy: (country) => country
                     .copyWith(
                         nameLocalized: t
-                            ?.countryName(countryCode: e.countryCode)
+                            ?.countryName(countryCode: country.countryCode)
                             ?.replaceAll(RegExp(r'\s+'), ' '))
                     .nameLocalized
                     ?.characters
@@ -233,7 +230,7 @@ class _CountryListViewState extends State<CountryListView> {
                   endIndent: effectivePadding,
                   color: effectiveDividerColor,
                 ),
-                groupSeparatorBuilder: (String? name) => Container(
+                groupSeparatorBuilder: (name) => Container(
                   color: effectiveStickyHeaderBackgroundColor,
                   padding: EdgeInsets.symmetric(
                     horizontal: effectivePadding,
@@ -251,7 +248,7 @@ class _CountryListViewState extends State<CountryListView> {
                     ),
                   ),
                 ),
-                itemBuilder: (_, Country e) => _CountryListItem(
+                itemBuilder: (_, e) => _CountryListView$ListItem(
                   country: e,
                   onSelect: widget.onSelect,
                   countryPickerThemeData: widget.countryPickerThemeData,
@@ -260,7 +257,7 @@ class _CountryListViewState extends State<CountryListView> {
                 // children: [
                 //   if (_favoriteList != null) ...[
                 //     ..._favoriteList!
-                //         .map((c) => _CountryListItem(
+                //         .map((c) => _CountryListView$ListItem(
                 //               country: c,
                 //               onSelect: widget.onSelect,
                 //               countryPickerThemeData: widget.countryPickerThemeData,
@@ -272,7 +269,7 @@ class _CountryListViewState extends State<CountryListView> {
                 //     ),
                 //   ],
                 //   ..._filteredList
-                //       .map((c) => _CountryListItem(
+                //       .map((c) => _CountryListView$ListItem(
                 //             country: c,
                 //             onSelect: widget.onSelect,
                 //             countryPickerThemeData: widget.countryPickerThemeData,
@@ -305,7 +302,14 @@ class _CountryListViewState extends State<CountryListView> {
   }
 }
 
-class _CountryListItem extends StatelessWidget {
+class _CountryListView$ListItem extends StatelessWidget {
+  const _CountryListView$ListItem({
+    required this.country,
+    this.countryPickerThemeData,
+    this.onSelect,
+    super.key, // ignore: unused_element
+  });
+
   final Country country;
 
   /// Called when a country is select.
@@ -316,13 +320,6 @@ class _CountryListItem extends StatelessWidget {
   /// An optional argument for customizing the
   /// country list bottom sheet.
   final CountryPickerThemeData? countryPickerThemeData;
-
-  const _CountryListItem({
-    required this.country,
-    this.countryPickerThemeData,
-    this.onSelect,
-    Key? key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -357,7 +354,7 @@ class _CountryListItem extends StatelessWidget {
           dense: true,
           minLeadingWidth: 0,
           contentPadding: effectivePadding,
-          leading: _Flag(
+          leading: _CountryListView$Flag(
             country: country,
             countryPickerThemeData: countryPickerThemeData,
           ),
@@ -378,15 +375,15 @@ class _CountryListItem extends StatelessWidget {
   }
 }
 
-class _Flag extends StatelessWidget {
-  final Country country;
-  final CountryPickerThemeData? countryPickerThemeData;
-
-  const _Flag({
-    Key? key,
+class _CountryListView$Flag extends StatelessWidget {
+  const _CountryListView$Flag({
     required this.country,
     this.countryPickerThemeData,
-  }) : super(key: key);
+    super.key, // ignore: unused_element
+  });
+
+  final Country country;
+  final CountryPickerThemeData? countryPickerThemeData;
 
   @override
   Widget build(BuildContext context) {

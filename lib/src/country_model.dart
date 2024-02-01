@@ -1,15 +1,45 @@
 import 'package:flutter/material.dart';
-
-import 'country_localizations.dart';
-import 'country_parser.dart';
-
-import 'helpers/utils.dart';
-import 'helpers/typesdef.dart';
+import 'package:flutter_country_picker/src/country_localizations.dart';
+import 'package:flutter_country_picker/src/country_parser.dart';
+import 'package:flutter_country_picker/src/helpers/typesdef.dart';
+import 'package:flutter_country_picker/src/helpers/utils.dart';
 
 /// The country Model that has all the country
 /// information needed from the [flutter_country_picker]
 @immutable
 class Country {
+  const Country({
+    required this.phoneCode,
+    required this.countryCode,
+    required this.e164Sc,
+    required this.geographic,
+    required this.level,
+    required this.name,
+    required this.example,
+    required this.displayName,
+    required this.displayNameNoCountryCode,
+    required this.e164Key,
+    this.nameLocalized = '',
+    this.fullExampleWithPlusSign,
+    this.mask,
+  });
+
+  Country.fromJson(JSON json)
+      : phoneCode = json['e164_cc'] as String,
+        countryCode = json['iso2_cc'] as String,
+        e164Sc = json['e164_sc'] as int,
+        geographic = json['geographic'] as bool,
+        level = json['level'] as int,
+        name = json['name'] as String,
+        nameLocalized = '',
+        example = json['example'] as String,
+        displayName = json['display_name'] as String,
+        fullExampleWithPlusSign =
+            json['full_example_with_plus_sign'] as String?,
+        mask = json['mask'] as String?,
+        displayNameNoCountryCode = json['display_name_no_e164_cc'] as String,
+        e164Key = json['e164_key'] as String;
+
   static const Country worldWide = Country(
     phoneCode: '',
     countryCode: 'WW',
@@ -54,27 +84,10 @@ class Country {
   final String displayNameNoCountryCode;
   final String e164Key;
 
-  String? getTranslatedName(BuildContext context) {
-    return CountryLocalizations.of(context)?.countryName(
-      countryCode: countryCode,
-    );
-  }
-
-  const Country({
-    required this.phoneCode,
-    required this.countryCode,
-    required this.e164Sc,
-    required this.geographic,
-    required this.level,
-    required this.name,
-    required this.example,
-    required this.displayName,
-    required this.displayNameNoCountryCode,
-    required this.e164Key,
-    this.nameLocalized = '',
-    this.fullExampleWithPlusSign,
-    this.mask,
-  });
+  String? getTranslatedName(BuildContext context) =>
+      CountryLocalizations.of(context)?.countryName(
+        countryCode: countryCode,
+      );
 
   Country copyWith({
     String? phoneCode,
@@ -90,41 +103,24 @@ class Country {
     String? mask,
     String? name,
     String? nameLocalized,
-  }) {
-    return Country(
-      phoneCode: phoneCode ?? this.phoneCode,
-      countryCode: countryCode ?? this.countryCode,
-      e164Sc: e164Sc ?? this.e164Sc,
-      e164Key: e164Key ?? this.e164Key,
-      geographic: geographic ?? this.geographic,
-      level: level ?? this.level,
-      displayName: displayName ?? this.displayName,
-      displayNameNoCountryCode:
-          displayNameNoCountryCode ?? this.displayNameNoCountryCode,
-      example: example ?? this.example,
-      fullExampleWithPlusSign:
-          fullExampleWithPlusSign ?? this.fullExampleWithPlusSign,
-      mask: mask ?? this.mask,
-      name: name ?? this.name,
-      nameLocalized: nameLocalized ?? this.nameLocalized,
-    );
-  }
-
-  Country.fromJson(JSON json)
-      : phoneCode = json['e164_cc'] as String,
-        countryCode = json['iso2_cc'] as String,
-        e164Sc = json['e164_sc'] as int,
-        geographic = json['geographic'] as bool,
-        level = json['level'] as int,
-        name = json['name'] as String,
-        nameLocalized = '',
-        example = json['example'] as String,
-        displayName = json['display_name'] as String,
-        fullExampleWithPlusSign =
-            json['full_example_with_plus_sign'] as String?,
-        mask = json['mask'] as String?,
-        displayNameNoCountryCode = json['display_name_no_e164_cc'] as String,
-        e164Key = json['e164_key'] as String;
+  }) =>
+      Country(
+        phoneCode: phoneCode ?? this.phoneCode,
+        countryCode: countryCode ?? this.countryCode,
+        e164Sc: e164Sc ?? this.e164Sc,
+        e164Key: e164Key ?? this.e164Key,
+        geographic: geographic ?? this.geographic,
+        level: level ?? this.level,
+        displayName: displayName ?? this.displayName,
+        displayNameNoCountryCode:
+            displayNameNoCountryCode ?? this.displayNameNoCountryCode,
+        example: example ?? this.example,
+        fullExampleWithPlusSign:
+            fullExampleWithPlusSign ?? this.fullExampleWithPlusSign,
+        mask: mask ?? this.mask,
+        name: name ?? this.name,
+        nameLocalized: nameLocalized ?? this.nameLocalized,
+      );
 
   static Country parse(String country) {
     if (country == worldWide.countryCode) {
@@ -143,7 +139,7 @@ class Country {
   }
 
   JSON toJson() {
-    final JSON data = <String, dynamic>{};
+    final JSON data = <String, Object?>{};
     data['e164_cc'] = phoneCode;
     data['iso2_cc'] = countryCode;
     data['e164_sc'] = e164Sc;
